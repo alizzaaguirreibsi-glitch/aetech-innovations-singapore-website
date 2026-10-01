@@ -2731,15 +2731,13 @@ body {
    ========================================================= */
 
 .partner-card {
-
     position: relative;
-
     display: flex;
-
     flex-direction: column;
-
     padding: 16px;
-
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background:
         linear-gradient(
             145deg,
@@ -2973,6 +2971,9 @@ body {
     display: flex;
     flex-direction: column;
     padding: 16px;
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background:
         linear-gradient(
             145deg,
