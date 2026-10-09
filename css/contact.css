@@ -48,9 +48,7 @@ textarea {
 }
 
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* LOGO */
 
 .logo {
     display: flex;
@@ -65,9 +63,7 @@ textarea {
 }
 
 
-/* =========================================================
-   DESKTOP NAVIGATION
-========================================================= */
+/* DESKTOP NAVIGATION */
 
 .nav-links {
     display: flex;
@@ -112,9 +108,7 @@ textarea {
 }
 
 
-/* =========================================================
-   DESKTOP CONTACT BUTTON
-========================================================= */
+/* DESKTOP CONTACT BUTTON */
 
 .contact-btn {
     display: inline-flex;
@@ -137,9 +131,7 @@ textarea {
 }
 
 
-/* =========================================================
-   HAMBURGER BUTTON
-========================================================= */
+/* HAMBURGER BUTTON */
 
 .hamburger {
     display: none;
@@ -166,9 +158,6 @@ textarea {
         opacity 0.3s ease;
 }
 
-
-/* HAMBURGER → X */
-
 .hamburger.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
@@ -182,9 +171,7 @@ textarea {
 }
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/* MOBILE MENU */
 
 .mobile-menu {
     display: none;
@@ -204,11 +191,6 @@ textarea {
     overflow: hidden;
     background-color: #03142A;
 }
-
-
-/* =========================================================
-   HERO BACKGROUND
-========================================================= */
 
 .contact-hero-background {
     position: absolute;
@@ -233,11 +215,6 @@ textarea {
     transform: scale(1.01);
 }
 
-
-/* =========================================================
-   HERO CONTAINER
-========================================================= */
-
 .contact-hero-container {
     position: relative;
     z-index: 2;
@@ -252,20 +229,10 @@ textarea {
     padding: 80px 0;
 }
 
-
-/* =========================================================
-   HERO CONTENT
-========================================================= */
-
 .contact-hero-content {
     max-width: 650px;
     padding-bottom: 20px;
 }
-
-
-/* =========================================================
-   HERO LABEL
-========================================================= */
 
 .contact-hero-label {
     display: flex;
@@ -287,11 +254,6 @@ textarea {
     background-color: #FCA311;
 }
 
-
-/* =========================================================
-   HERO TITLE
-========================================================= */
-
 .contact-hero h1 {
     margin: 0 0 30px;
 
@@ -308,11 +270,6 @@ textarea {
     font-weight: 500;
 }
 
-
-/* =========================================================
-   HERO DESCRIPTION
-========================================================= */
-
 .contact-hero-content p {
     max-width: 600px;
     margin: 0 0 30px;
@@ -321,11 +278,6 @@ textarea {
     font-size: 16px;
     line-height: 1.7;
 }
-
-
-/* =========================================================
-   HERO CTA
-========================================================= */
 
 .contact-hero-link {
     display: inline-flex;
@@ -354,11 +306,6 @@ textarea {
 .contact-hero-link:hover span {
     transform: translateX(6px);
 }
-
-
-/* =========================================================
-   HERO DECORATION
-========================================================= */
 
 .contact-hero::before {
     content: "";
@@ -410,11 +357,6 @@ textarea {
     color: #14213D;
 }
 
-
-/* =========================================================
-   CONTACT MAIN CONTAINER
-========================================================= */
-
 .contact-section-container {
     display: grid;
     grid-template-columns: 0.72fr 1.58fr;
@@ -426,21 +368,11 @@ textarea {
     padding: 78px 0 72px;
 }
 
-
-/* =========================================================
-   CONTACT INTRO
-========================================================= */
-
 .contact-intro {
     position: relative;
     min-height: 430px;
     padding-top: 5px;
 }
-
-
-/* =========================================================
-   SECTION LABEL
-========================================================= */
 
 .contact-section-label {
     display: flex;
@@ -462,11 +394,6 @@ textarea {
     background-color: #FCA311;
 }
 
-
-/* =========================================================
-   CONTACT TITLE
-========================================================= */
-
 .contact-intro h2 {
     max-width: 360px;
     margin: 0 0 24px;
@@ -482,11 +409,6 @@ textarea {
     display: block;
 }
 
-
-/* =========================================================
-   CONTACT DESCRIPTION
-========================================================= */
-
 .contact-intro > p {
     max-width: 330px;
     margin: 0;
@@ -497,9 +419,7 @@ textarea {
 }
 
 
-/* =========================================================
-   DECORATIVE CONTACT GRAPHIC
-========================================================= */
+/* DECORATIVE CONTACT GRAPHIC */
 
 .contact-decoration {
     position: absolute;
@@ -512,11 +432,6 @@ textarea {
 
     pointer-events: none;
 }
-
-
-/* =========================================================
-   ORBITS
-========================================================= */
 
 .contact-orbit {
     position: absolute;
@@ -550,11 +465,6 @@ textarea {
     border-bottom-color: transparent;
 }
 
-
-/* =========================================================
-   ENVELOPE
-========================================================= */
-
 .contact-envelope {
     position: absolute;
 
@@ -587,11 +497,6 @@ textarea {
     transform: rotate(45deg);
 }
 
-
-/* =========================================================
-   ORANGE DOT
-========================================================= */
-
 .contact-dot {
     position: absolute;
 
@@ -609,19 +514,12 @@ textarea {
 }
 
 
-/* =========================================================
-   CONTACT FORM
-========================================================= */
+/* CONTACT FORM */
 
 .contact-form-wrapper,
 .contact-form {
     width: 100%;
 }
-
-
-/* =========================================================
-   FORM ROW
-========================================================= */
 
 .form-row {
     display: grid;
@@ -630,11 +528,6 @@ textarea {
 
     margin-bottom: 19px;
 }
-
-
-/* =========================================================
-   FORM GROUP
-========================================================= */
 
 .form-group {
     width: 100%;
@@ -645,11 +538,6 @@ textarea {
     margin-bottom: 0;
 }
 
-
-/* =========================================================
-   FORM LABEL
-========================================================= */
-
 .form-group label {
     display: block;
     margin-bottom: 9px;
@@ -658,11 +546,6 @@ textarea {
     font-size: 13px;
     font-weight: 600;
 }
-
-
-/* =========================================================
-   FORM INPUTS
-========================================================= */
 
 .form-group input,
 .form-group select,
@@ -699,20 +582,10 @@ textarea {
     line-height: 1.5;
 }
 
-
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
-
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: #718096;
 }
-
-
-/* =========================================================
-   FORM FOCUS
-========================================================= */
 
 .form-group input:focus,
 .form-group select:focus,
@@ -722,11 +595,6 @@ textarea {
 
     box-shadow: 0 0 0 3px rgba(252, 163, 17, 0.08);
 }
-
-
-/* =========================================================
-   SELECT
-========================================================= */
 
 .select-wrapper {
     position: relative;
@@ -755,9 +623,7 @@ textarea {
 }
 
 
-/* =========================================================
-   SUBMIT BUTTON
-========================================================= */
+/* SUBMIT BUTTON */
 
 .contact-submit {
     display: inline-flex;
@@ -811,9 +677,7 @@ textarea {
 }
 
 
-/* =========================================================
-   FORM STATUS
-========================================================= */
+/* FORM STATUS */
 
 .form-status {
     min-height: 20px;
@@ -875,11 +739,6 @@ textarea {
     border-right: none;
 }
 
-
-/* =========================================================
-   CONTACT INFO ICON
-========================================================= */
-
 .contact-info-icon {
     flex-shrink: 0;
 
@@ -904,11 +763,6 @@ textarea {
     display: block;
     transform: translateY(-1px);
 }
-
-
-/* =========================================================
-   CONTACT INFO TEXT
-========================================================= */
 
 .contact-info-content h3 {
     margin-bottom: 8px;
@@ -944,11 +798,6 @@ textarea {
 
     color: #ffffff;
 }
-
-
-/* =========================================================
-   FOOTER NEWSLETTER
-========================================================= */
 
 .footer-newsletter {
     position: relative;
@@ -1023,11 +872,6 @@ textarea {
     line-height: 1.7;
 }
 
-
-/* =========================================================
-   NEWSLETTER FORM
-========================================================= */
-
 .newsletter-form {
     display: flex;
     gap: 12px;
@@ -1099,11 +943,6 @@ textarea {
     transform: translateY(-2px);
 }
 
-
-/* =========================================================
-   FOOTER MAIN
-========================================================= */
-
 .footer-main {
     padding: 75px 6% 65px;
     background-color: #07182D;
@@ -1117,11 +956,6 @@ textarea {
     max-width: 1200px;
     margin: 0 auto;
 }
-
-
-/* =========================================================
-   FOOTER BRAND
-========================================================= */
 
 .footer-brand {
     display: flex;
@@ -1149,11 +983,6 @@ textarea {
     font-size: 15px;
     line-height: 1.8;
 }
-
-
-/* =========================================================
-   FOOTER COLUMNS
-========================================================= */
 
 .footer-column {
     display: flex;
@@ -1196,11 +1025,6 @@ textarea {
     font-size: 15px;
     line-height: 1.6;
 }
-
-
-/* =========================================================
-   FOOTER BOTTOM
-========================================================= */
 
 .footer-bottom {
     padding: 22px 6%;
@@ -1691,5 +1515,64 @@ textarea {
 
     .contact-info-content p {
         font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   UPDATED HEADER ALIGNMENT  (keep this block at the END)
+   Desktop/tablet (701px+): logo left, links centered, contact right
+   Mobile (700px and below): existing hamburger menu is unchanged
+========================================================= */
+
+/* Contact button now lives outside .nav-links,
+   so it needs its own text styling */
+.desktop-contact-btn {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+@media (min-width: 701px) {
+    .nav {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        column-gap: 20px;
+    }
+
+    .logo {
+        grid-column: 1;
+        justify-self: start;
+        min-width: 0;
+    }
+
+    .nav-links {
+        grid-column: 2;
+        justify-self: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    .nav-links li {
+        flex: 0 0 auto;
+    }
+
+    .desktop-contact-btn {
+        grid-column: 3;
+        justify-self: end;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 900px) {
+    .desktop-contact-btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 700px) {
+    /* The mobile menu already contains its own Contact Us button */
+    .desktop-contact-btn {
+        display: none;
     }
 }

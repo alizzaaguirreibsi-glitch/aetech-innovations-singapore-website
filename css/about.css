@@ -42,9 +42,7 @@ body {
 }
 
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* LOGO */
 
 .logo {
     display: flex;
@@ -61,9 +59,7 @@ body {
 }
 
 
-/* =========================================================
-   DESKTOP NAVIGATION
-========================================================= */
+/* DESKTOP NAVIGATION */
 
 .nav-links {
     display: flex;
@@ -100,9 +96,7 @@ body {
 }
 
 
-/* =========================================================
-   CONTACT BUTTON
-========================================================= */
+/* CONTACT BUTTON */
 
 .contact-btn {
     display: inline-flex;
@@ -130,9 +124,7 @@ body {
 }
 
 
-/* =========================================================
-   HAMBURGER
-========================================================= */
+/* HAMBURGER */
 
 .hamburger {
     display: none;
@@ -183,11 +175,6 @@ body {
     top: 29px;
 }
 
-
-/* =========================================================
-   HAMBURGER ACTIVE
-========================================================= */
-
 .hamburger.active span:nth-child(1) {
     top: 21px;
     transform: rotate(45deg);
@@ -203,9 +190,7 @@ body {
 }
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/* MOBILE MENU */
 
 .mobile-menu {
     display: none;
@@ -268,9 +253,7 @@ body {
 }
 
 
-/* =========================================================
-   MOBILE CONTACT BUTTON
-========================================================= */
+/* MOBILE CONTACT BUTTON */
 
 .mobile-contact-btn {
     margin-top: 14px;
@@ -312,11 +295,6 @@ body {
     overflow: hidden;
 }
 
-
-/* =========================================================
-   SUBTLE TECHNOLOGY CIRCLES
-========================================================= */
-
 .about-hero::before {
     content: "";
 
@@ -347,11 +325,6 @@ body {
     border-radius: 50%;
 }
 
-
-/* =========================================================
-   HERO CONTAINER
-========================================================= */
-
 .about-hero-container {
     position: relative;
     z-index: 2;
@@ -370,19 +343,9 @@ body {
     padding: 90px 0;
 }
 
-
-/* =========================================================
-   HERO CONTENT
-========================================================= */
-
 .about-hero-content {
     max-width: 650px;
 }
-
-
-/* =========================================================
-   HERO LABEL
-========================================================= */
 
 .about-hero-label {
     display: flex;
@@ -408,11 +371,6 @@ body {
     background-color: #F28A00;
 }
 
-
-/* =========================================================
-   HERO TITLE
-========================================================= */
-
 .about-hero h1 {
     margin: 0 0 30px;
 
@@ -431,11 +389,6 @@ body {
     font-weight: 500;
 }
 
-
-/* =========================================================
-   HERO DESCRIPTION
-========================================================= */
-
 .about-hero-content p {
     max-width: 570px;
 
@@ -446,11 +399,6 @@ body {
     font-size: 15px;
     line-height: 1.75;
 }
-
-
-/* =========================================================
-   HERO LINK
-========================================================= */
 
 .about-hero-link {
     display: inline-flex;
@@ -484,9 +432,7 @@ body {
 }
 
 
-/* =========================================================
-   VIDEO
-========================================================= */
+/* VIDEO */
 
 .about-hero-media {
     position: relative;
@@ -523,11 +469,6 @@ body {
     background-color: #020B16;
 }
 
-
-/* =========================================================
-   VIDEO OVERLAY
-========================================================= */
-
 .about-video-overlay {
     position: absolute;
     inset: 0;
@@ -550,11 +491,6 @@ body {
 
     pointer-events: none;
 }
-
-
-/* =========================================================
-   VIDEO TAG
-========================================================= */
 
 .about-video-tag {
     align-self: flex-start;
@@ -591,11 +527,6 @@ body {
     box-shadow:
         0 0 10px rgba(242, 138, 0, 0.8);
 }
-
-
-/* =========================================================
-   PLAY BUTTON
-========================================================= */
 
 .about-video-play {
     pointer-events: auto;
@@ -640,11 +571,6 @@ body {
     font-size: 21px;
 }
 
-
-/* =========================================================
-   VIDEO CAPTION
-========================================================= */
-
 .about-video-caption {
     align-self: flex-start;
 
@@ -668,11 +594,6 @@ body {
 
     font-size: 11px;
 }
-
-
-/* =========================================================
-   VIDEO PLAYING STATE
-========================================================= */
 
 .about-video-frame.is-playing .about-video-overlay {
     background: transparent;
@@ -710,11 +631,6 @@ body {
     overflow: hidden;
 }
 
-
-/* =========================================================
-   MISSION CONTAINER
-========================================================= */
-
 .about-mission-container {
     width: min(1380px, 90%);
 
@@ -722,11 +638,6 @@ body {
 
     padding: 110px 0 120px;
 }
-
-
-/* =========================================================
-   MISSION LABEL
-========================================================= */
 
 .about-mission-label {
     display: flex;
@@ -752,11 +663,6 @@ body {
     background-color: #FCA311;
 }
 
-
-/* =========================================================
-   MISSION TITLE
-========================================================= */
-
 .about-mission h2 {
     max-width: 850px;
 
@@ -777,11 +683,6 @@ body {
     font-weight: 500;
 }
 
-
-/* =========================================================
-   MISSION CONTENT
-========================================================= */
-
 .about-mission-content {
     display: grid;
 
@@ -791,11 +692,6 @@ body {
 
     gap: 100px;
 }
-
-
-/* =========================================================
-   MISSION IMAGE
-========================================================= */
 
 .about-mission-image {
     width: 100%;
@@ -822,11 +718,6 @@ body {
     transform: scale(1.03);
 }
 
-
-/* =========================================================
-   MISSION TEXT
-========================================================= */
-
 .about-mission-text {
     max-width: 540px;
 }
@@ -843,11 +734,6 @@ body {
 .about-mission-text p:last-child {
     margin-bottom: 0;
 }
-
-
-/* =========================================================
-   MISSION DECORATIVE CIRCLES
-========================================================= */
 
 .about-mission::before {
     content: "";
@@ -899,11 +785,6 @@ body {
     overflow: hidden;
 }
 
-
-/* =========================================================
-   DELIVER CONTAINER
-========================================================= */
-
 .about-deliver-container {
     position: relative;
     z-index: 2;
@@ -914,11 +795,6 @@ body {
 
     padding: 115px 0 150px;
 }
-
-
-/* =========================================================
-   DELIVER LABEL
-========================================================= */
 
 .about-deliver-label {
     display: flex;
@@ -944,11 +820,6 @@ body {
     background-color: #FCA311;
 }
 
-
-/* =========================================================
-   DELIVER TITLE
-========================================================= */
-
 .about-deliver h2 {
     max-width: 950px;
 
@@ -971,11 +842,6 @@ body {
     font-weight: 500;
 }
 
-
-/* =========================================================
-   DELIVER CONTENT
-========================================================= */
-
 .about-deliver-content {
     display: grid;
 
@@ -986,19 +852,9 @@ body {
     gap: 90px;
 }
 
-
-/* =========================================================
-   DELIVER TEXT
-========================================================= */
-
 .about-deliver-text {
     max-width: 550px;
 }
-
-
-/* =========================================================
-   DELIVER ACCENT
-========================================================= */
 
 .about-deliver-accent {
     width: 48px;
@@ -1008,11 +864,6 @@ body {
 
     background-color: #FCA311;
 }
-
-
-/* =========================================================
-   DELIVER PARAGRAPHS
-========================================================= */
 
 .about-deliver-text p {
     margin: 0 0 28px;
@@ -1033,9 +884,7 @@ body {
 }
 
 
-/* =========================================================
-   DELIVER HIGHLIGHTS
-========================================================= */
+/* HIGHLIGHTS */
 
 .about-deliver-highlights {
     display: flex;
@@ -1062,11 +911,6 @@ body {
         1px solid rgba(20, 33, 61, 0.12);
 }
 
-
-/* =========================================================
-   DELIVER NUMBER
-========================================================= */
-
 .deliver-number {
     padding-top: 5px;
 
@@ -1078,22 +922,12 @@ body {
     letter-spacing: 1px;
 }
 
-
-/* =========================================================
-   HIGHLIGHT CONTENT
-========================================================= */
-
 .deliver-highlight-content {
     display: flex;
     align-items: center;
 
     gap: 16px;
 }
-
-
-/* =========================================================
-   DELIVER ICON
-========================================================= */
 
 .deliver-icon {
     flex-shrink: 0;
@@ -1120,11 +954,6 @@ body {
     color: #FCA311;
 }
 
-
-/* =========================================================
-   HIGHLIGHT TITLE
-========================================================= */
-
 .deliver-highlight strong {
     display: block;
 
@@ -1136,11 +965,6 @@ body {
     font-weight: 700;
 }
 
-
-/* =========================================================
-   HIGHLIGHT DESCRIPTION
-========================================================= */
-
 .deliver-highlight small {
     display: block;
 
@@ -1151,9 +975,7 @@ body {
 }
 
 
-/* =========================================================
-   DELIVER VISUAL
-========================================================= */
+/* DELIVER VISUAL */
 
 .about-deliver-visual {
     position: relative;
@@ -1163,11 +985,6 @@ body {
 
     padding-bottom: 70px;
 }
-
-
-/* =========================================================
-   MAIN DELIVER IMAGE
-========================================================= */
 
 .about-deliver-image-main {
     position: relative;
@@ -1198,11 +1015,6 @@ body {
 .about-deliver-image-main:hover img {
     transform: scale(1.025);
 }
-
-
-/* =========================================================
-   MAIN IMAGE LABEL
-========================================================= */
 
 .about-deliver-image-label {
     position: absolute;
@@ -1244,11 +1056,6 @@ body {
         0 0 10px rgba(252, 163, 17, 0.75);
 }
 
-
-/* =========================================================
-   SECONDARY TEAM IMAGE
-========================================================= */
-
 .about-deliver-image-secondary {
     position: absolute;
 
@@ -1285,11 +1092,6 @@ body {
     transform: scale(1.04);
 }
 
-
-/* =========================================================
-   SECONDARY IMAGE LABEL
-========================================================= */
-
 .deliver-secondary-label {
     position: absolute;
 
@@ -1309,11 +1111,6 @@ body {
 
     letter-spacing: 1.5px;
 }
-
-
-/* =========================================================
-   DELIVER DECORATIVE CIRCLES
-========================================================= */
 
 .about-deliver::before {
     content: "";
@@ -1368,11 +1165,6 @@ body {
     color: #ffffff;
 }
 
-
-/* =========================================================
-   FOOTER NEWSLETTER
-========================================================= */
-
 .footer-newsletter {
     position: relative;
 
@@ -1407,11 +1199,6 @@ body {
     text-align: center;
 }
 
-
-/* =========================================================
-   FOOTER LABEL
-========================================================= */
-
 .footer-label {
     display: inline-flex;
     align-items: center;
@@ -1438,11 +1225,6 @@ body {
     background-color: #FCA311;
 }
 
-
-/* =========================================================
-   FOOTER NEWSLETTER TITLE
-========================================================= */
-
 .footer-newsletter h2 {
     max-width: 950px;
 
@@ -1466,11 +1248,6 @@ body {
     font-size: 16px;
     line-height: 1.7;
 }
-
-
-/* =========================================================
-   NEWSLETTER FORM
-========================================================= */
 
 .newsletter-form {
     max-width: 850px;
@@ -1556,11 +1333,6 @@ body {
     transform: translateY(-2px);
 }
 
-
-/* =========================================================
-   FOOTER MAIN
-========================================================= */
-
 .footer-main {
     padding: 75px 6% 65px;
 
@@ -1578,11 +1350,6 @@ body {
 
     gap: 80px;
 }
-
-
-/* =========================================================
-   FOOTER BRAND
-========================================================= */
 
 .footer-brand {
     display: flex;
@@ -1614,11 +1381,6 @@ body {
     font-size: 15px;
     line-height: 1.8;
 }
-
-
-/* =========================================================
-   FOOTER COLUMNS
-========================================================= */
 
 .footer-column {
     display: flex;
@@ -1665,11 +1427,6 @@ body {
     font-size: 15px;
     line-height: 1.6;
 }
-
-
-/* =========================================================
-   FOOTER BOTTOM
-========================================================= */
 
 .footer-bottom {
     padding: 22px 6%;
@@ -1731,9 +1488,7 @@ body {
 }
 
 
-/* =========================================================
-   TABLET — HERO
-========================================================= */
+/* TABLET — HERO */
 
 @media (max-width: 1000px) {
 
@@ -1759,9 +1514,7 @@ body {
 }
 
 
-/* =========================================================
-   TABLET — MISSION
-========================================================= */
+/* TABLET — MISSION */
 
 @media (max-width: 1000px) {
 
@@ -1793,9 +1546,7 @@ body {
 }
 
 
-/* =========================================================
-   TABLET — DELIVER
-========================================================= */
+/* TABLET — DELIVER */
 
 @media (max-width: 1000px) {
 
@@ -1837,9 +1588,7 @@ body {
 }
 
 
-/* =========================================================
-   TABLET — FOOTER
-========================================================= */
+/* TABLET — FOOTER */
 
 @media (max-width: 900px) {
 
@@ -1911,9 +1660,7 @@ body {
 }
 
 
-/* =========================================================
-   MOBILE — HERO
-========================================================= */
+/* MOBILE — HERO */
 
 @media (max-width: 650px) {
 
@@ -1971,9 +1718,7 @@ body {
 }
 
 
-/* =========================================================
-   MOBILE — MISSION
-========================================================= */
+/* MOBILE — MISSION */
 
 @media (max-width: 650px) {
 
@@ -2019,9 +1764,7 @@ body {
 }
 
 
-/* =========================================================
-   MOBILE — DELIVER
-========================================================= */
+/* MOBILE — DELIVER */
 
 @media (max-width: 650px) {
 
@@ -2147,9 +1890,7 @@ body {
 }
 
 
-/* =========================================================
-   MOBILE — FOOTER
-========================================================= */
+/* MOBILE — FOOTER */
 
 @media (max-width: 650px) {
 
@@ -2199,5 +1940,127 @@ body {
 
     .footer-bottom p {
         text-align: center;
+    }
+}
+
+
+/* =========================================================
+   UPDATED HEADER ALIGNMENT  (keep this block at the END)
+   Desktop: logo left, main links centered, contact right
+   Mobile/tablet: logo left, hamburger right, dropdown menu
+========================================================= */
+
+/* Contact button now lives outside .nav-links,
+   so it needs its own text styling */
+.desktop-contact-btn {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+@media (min-width: 1101px) {
+    .site {
+        padding: 0 60px;
+    }
+
+    .nav {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        column-gap: 28px;
+        min-height: 72px;
+        width: 100%;
+    }
+
+    .logo {
+        grid-column: 1;
+        justify-self: start;
+        min-width: 0;
+    }
+
+    .nav-links {
+        grid-column: 2;
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(22px, 2.5vw, 38px);
+        white-space: nowrap;
+    }
+
+    .nav-links li {
+        flex: 0 0 auto;
+    }
+
+    .desktop-contact-btn {
+        grid-column: 3;
+        justify-self: end;
+        display: inline-flex;
+        white-space: nowrap;
+    }
+
+    .hamburger,
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1100px) {
+    .site {
+        padding: 0 20px;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 72px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .logo {
+        margin-right: auto;
+    }
+
+    .nav-links,
+    .desktop-contact-btn {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: block;
+        margin-left: auto;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: -20px;
+        right: -20px;
+        width: calc(100% + 40px);
+        z-index: 1000;
+    }
+
+    .mobile-menu.open {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .site {
+        padding: 0 16px;
+    }
+
+    .nav {
+        min-height: 62px;
+    }
+
+    .mobile-menu {
+        left: -16px;
+        right: -16px;
+        width: calc(100% + 32px);
     }
 }

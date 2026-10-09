@@ -29,7 +29,7 @@
             </a>
 
 
-            <!-- DESKTOP NAVIGATION -->
+            <!-- DESKTOP NAVIGATION: CENTERED -->
             <ul class="nav-links">
 
                 <li>
@@ -46,13 +46,13 @@
                     <a href="about.html">About</a>
                 </li>
 
-                <li>
-                    <a href="contact.html" class="contact-btn">
-                        Contact Us
-                    </a>
-                </li>
-
             </ul>
+
+
+            <!-- CONTACT BUTTON: RIGHT SIDE -->
+            <a href="contact.html" class="contact-btn desktop-contact-btn" aria-current="page">
+                Contact Us
+            </a>
 
 
             <!-- MOBILE MENU BUTTON -->
@@ -167,10 +167,7 @@
 
             <div class="contact-section-container">
 
-                <!-- =================================================
-                    LEFT: INTRODUCTION
-                ================================================== -->
-
+                <!-- LEFT: INTRODUCTION -->
                 <div class="contact-intro">
 
                     <!-- SECTION LABEL -->
@@ -188,8 +185,8 @@
 
                     <!-- DESCRIPTION -->
                     <p>
-                        Reach out, share a question or provide feedback on our products. 
-                        Fill out the form and we’ll respond as soon as possible. 
+                        Reach out, share a question or provide feedback on our products.
+                        Fill out the form and we’ll respond as soon as possible.
                     </p>
 
 
@@ -212,10 +209,7 @@
                 </div>
 
 
-                <!-- =================================================
-                    RIGHT: CONTACT FORM
-                ================================================== -->
-
+                <!-- RIGHT: CONTACT FORM -->
                 <div class="contact-form-wrapper">
 
                     <form id="contact-form" class="contact-form">
@@ -440,60 +434,75 @@
         </section>
 
     </main>
-        <footer class="site-footer">
-                <div class="footer-newsletter">
-                    <div class="footer-newsletter-inner">
-                        <span class="footer-label">STAY CONNECTED</span>
-                        <h2>Be the First to Receive the Latest News From AETECH Innovations.</h2>
-                        <p>Stay updated with our latest innovations, projects, events, and developments.</p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
-                            <button type="submit">SUBSCRIBE <span>→</span></button>
-                        </form>
-                    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-newsletter">
+            <div class="footer-newsletter-inner">
+                <span class="footer-label">STAY CONNECTED</span>
+                <h2>Be the First to Receive the Latest News From AETECH Innovations.</h2>
+                <p>Stay updated with our latest innovations, projects, events, and developments.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+                    <button type="submit">SUBSCRIBE <span>→</span></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo">
+                        <img src="../assets/aetech-logo1.png" alt="AETECH Innovations Singapore">
+                    </a>
+                    <p>Empowering cities.<br>Educating futures.<br>Engineering tomorrow.</p>
                 </div>
-                <div class="footer-main">
-                    <div class="footer-grid">
-                        <div class="footer-brand">
-                            <a href="index.html" class="footer-logo">
-                                <img src="../assets/aetech-logo1.png" alt="AETECH Innovations Singapore">
-                            </a>
-                            <p>Empowering cities.<br>Educating futures.<br>Engineering tomorrow.</p>
-                        </div>
-                        <div class="footer-column">
-                            <h3>COMPANY</h3>
-                            <a href="index.html">Home</a>
-                            <a href="services-products.html">Services &amp; Products</a>
-                            <a href="about.html">About</a>
-                            <a href="contact.html">Contact Us</a>
-                        </div>
-                        <div class="footer-column">
-                            <h3>CONTACT</h3>
-                            <p>
-                                innovations.aetech@gmail.com
-                                edwin.astorga@aetechinnovations.sg
-                            </p>
 
-                            <p>
-                                +65 8725 7162 <br>
-                                +63 947 596 1606
-                            </p>
-                            <p>10 Anson Road, #22-02,<br>International Plaza,<br>Singapore 079903</p>
-                        </div>
-                    </div>
+                <div class="footer-column">
+                    <h3>COMPANY</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="services-products.html">Services &amp; Products</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact Us</a>
                 </div>
-                <div class="footer-bottom">
-                    <p>© 2025 AETECH Innovations Singapore. All Rights Reserved.</p>
+
+                <div class="footer-column">
+                    <h3>CONTACT</h3>
+                    <p>
+                        innovations.aetech@gmail.com
+                        edwin.astorga@aetechinnovations.sg
+                    </p>
+
+                    <p>
+                        +65 8725 7162 <br>
+                        +63 947 596 1606
+                    </p>
+
+                    <p>10 Anson Road, #22-02,<br>International Plaza,<br>Singapore 079903</p>
                 </div>
-        </footer>
 
-        <script
-            type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-        </script>
+            </div>
+        </div>
 
-        <script src="../js/contact.js"></script>
+        <div class="footer-bottom">
+            <p>© 2025 AETECH Innovations Singapore. All Rights Reserved.</p>
+        </div>
 
-    </body>
+    </footer>
+
+    <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+
+    <script src="../js/contact.js"></script>
+
+</body>
 
 </html>
