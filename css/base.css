@@ -1,0 +1,79 @@
+/* =========================================================
+   AETECH — SHARED BASE STYLES
+   Loaded on every page BEFORE the page-specific stylesheet.
+   Only add rules here that apply to all pages.
+========================================================= */
+
+/* ---------- Design tokens (use these for all new work) ---------- */
+:root {
+    --color-navy-900: #0b1728;
+    --color-navy-800: #14213D;
+    --color-accent: #D78800;
+    --color-accent-hover: #FFA200;
+    --color-accent-light: #FCA311;
+    --color-white: #ffffff;
+    --color-focus: #FCA311;
+
+    --radius-pill: 25px;
+    --radius-card: 14px;
+}
+
+/* ---------- Keyboard focus (was missing on every page) ---------- */
+:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+/* ---------- Newsletter feedback message (created by js/main.js) ---------- */
+.newsletter-status {
+    min-height: 1.4em;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.newsletter-status.success {
+    color: #7ee2a8;
+}
+
+.newsletter-status.error {
+    color: #ff9b9b;
+}
+
+.newsletter-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* ---------- Scroll reveal (activated by js/main.js) ----------
+   Content stays visible if JavaScript is unavailable: the hidden state
+   only applies once main.js adds .reveal-ready to <html>. */
+.reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Respect reduced-motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

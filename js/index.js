@@ -276,3 +276,39 @@ if (hamburger && mobileMenu) {
     });
 
 }
+
+
+/* ========================================
+   SCROLL REVEAL ANIMATION
+======================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const revealElements = document.querySelectorAll("[data-reveal]");
+
+    // Show everything immediately if reduced motion is preferred
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        revealElements.forEach((element) => {
+            element.classList.add("is-visible");
+        });
+        return;
+    }
+
+    const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+    revealElements.forEach((element) => {
+        revealObserver.observe(element);
+    });
+});

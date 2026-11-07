@@ -1519,14 +1519,7 @@ textarea {
 }
 
 
-/* =========================================================
-   UPDATED HEADER ALIGNMENT  (keep this block at the END)
-   Desktop/tablet (701px+): logo left, links centered, contact right
-   Mobile (700px and below): existing hamburger menu is unchanged
-========================================================= */
-
-/* Contact button now lives outside .nav-links,
-   so it needs its own text styling */
+/* HEADER ALIGNMENT */
 .desktop-contact-btn {
     text-decoration: none;
     font-size: 16px;
@@ -1571,7 +1564,6 @@ textarea {
 }
 
 @media (max-width: 700px) {
-    /* The mobile menu already contains its own Contact Us button */
     .desktop-contact-btn {
         display: none;
     }
