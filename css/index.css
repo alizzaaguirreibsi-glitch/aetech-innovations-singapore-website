@@ -340,7 +340,7 @@ body {
   --tint-bottom-size: 1px; /* how far it reaches up */
   --tint-sides: 0.1; /* kept minimal and thin */
   --tint-sides-size: 60px; /* how far it reaches inward */
-  --tint-base: 0.41; /* faint even wash over the whole video */
+  --tint-base: 0.45; /* faint even wash over the whole video */
 }
 
 .hero-overlay {
