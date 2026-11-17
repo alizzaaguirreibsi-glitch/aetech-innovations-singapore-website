@@ -331,7 +331,7 @@ body {
    The others tune one edge at a time (0 to 1 = how dark).
 --------------------------------------------------------- */
 .hero {
-  --tint-rgb: 4, 18, 35; /* tint colour (dark navy) */
+  --tint-color: #05071c; /* tint colour: click the swatch to pick */
   --tint-strength: 1; /* MASTER DIAL */
 
   --tint-top: 1; /* behind the navbar */
@@ -340,7 +340,7 @@ body {
   --tint-bottom-size: 1px; /* how far it reaches up */
   --tint-sides: 0.1; /* kept minimal and thin */
   --tint-sides-size: 60px; /* how far it reaches inward */
-  --tint-base: 0; /* faint even wash over the whole video */
+  --tint-base: 0.41; /* faint even wash over the whole video */
 }
 
 .hero-overlay {
@@ -355,38 +355,42 @@ body {
   width: 100%;
   height: 100%;
   background-image:
-    /* top: strong, eased fade */
     linear-gradient(
       to bottom,
-      rgba(var(--tint-rgb), var(--t)) 0%,
-      rgba(var(--tint-rgb), calc(var(--t) * 0.6)) 30%,
-      rgba(var(--tint-rgb), calc(var(--t) * 0.25)) 65%,
-      rgba(var(--tint-rgb), 0) 100%
+      color-mix(in srgb, var(--tint-color) calc(var(--t) * 100%), transparent)
+        0%,
+      color-mix(in srgb, var(--tint-color) calc(var(--t) * 60%), transparent)
+        30%,
+      color-mix(in srgb, var(--tint-color) calc(var(--t) * 25%), transparent)
+        65%,
+      transparent 100%
     ),
-    /* bottom: strong, eased fade */
     linear-gradient(
-        to top,
-        rgba(var(--tint-rgb), var(--b)) 0%,
-        rgba(var(--tint-rgb), calc(var(--b) * 0.6)) 30%,
-        rgba(var(--tint-rgb), calc(var(--b) * 0.25)) 65%,
-        rgba(var(--tint-rgb), 0) 100%
-      ),
-    /* left + right edges: thin and light (corners get darker where they overlap top/bottom) */
+      to top,
+      color-mix(in srgb, var(--tint-color) calc(var(--b) * 100%), transparent)
+        0%,
+      color-mix(in srgb, var(--tint-color) calc(var(--b) * 60%), transparent)
+        30%,
+      color-mix(in srgb, var(--tint-color) calc(var(--b) * 25%), transparent)
+        65%,
+      transparent 100%
+    ),
     linear-gradient(
-        to right,
-        rgba(var(--tint-rgb), var(--s)) 0%,
-        rgba(var(--tint-rgb), 0) 100%
-      ),
+      to right,
+      color-mix(in srgb, var(--tint-color) calc(var(--s) * 100%), transparent)
+        0%,
+      transparent 100%
+    ),
     linear-gradient(
       to left,
-      rgba(var(--tint-rgb), var(--s)) 0%,
-      rgba(var(--tint-rgb), 0) 100%
+      color-mix(in srgb, var(--tint-color) calc(var(--s) * 100%), transparent)
+        0%,
+      transparent 100%
     ),
-    /* faint even wash */
     linear-gradient(
-        rgba(var(--tint-rgb), var(--w)),
-        rgba(var(--tint-rgb), var(--w))
-      );
+      color-mix(in srgb, var(--tint-color) calc(var(--w) * 100%), transparent),
+      color-mix(in srgb, var(--tint-color) calc(var(--w) * 100%), transparent)
+    );
   background-repeat: no-repeat;
   background-size:
     100% var(--tint-top-size),
