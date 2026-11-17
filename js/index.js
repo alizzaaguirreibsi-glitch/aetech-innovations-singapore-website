@@ -148,3 +148,52 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(element);
   });
 });
+
+/* =========================================
+   HERO VIDEO: force autoplay on mobile
+========================================= */
+(function () {
+  const heroVideo = document.querySelector(".hero-video");
+  if (!heroVideo) return;
+
+  // Set as properties too: some mobile browsers ignore the HTML attributes
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.loop = true;
+  heroVideo.playsInline = true;
+  heroVideo.setAttribute("webkit-playsinline", "");
+
+  const tryPlay = () => {
+    const p = heroVideo.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(() => {
+        // Autoplay blocked: retry on the first user interaction
+        const resume = () => {
+          heroVideo.play().catch(() => {});
+          ["touchstart", "click", "scroll"].forEach((evt) =>
+            window.removeEventListener(evt, resume),
+          );
+        };
+        ["touchstart", "click", "scroll"].forEach((evt) =>
+          window.addEventListener(evt, resume, { once: true, passive: true }),
+        );
+      });
+    }
+  };
+
+  if (heroVideo.readyState >= 2) tryPlay();
+  else heroVideo.addEventListener("loadeddata", tryPlay, { once: true });
+
+  // Resume when the tab/app comes back or the video scrolls into view
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && heroVideo.paused) tryPlay();
+  });
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && heroVideo.paused) tryPlay();
+      });
+    }).observe(heroVideo);
+  }
+})();
