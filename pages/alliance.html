@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Join the ASIAN Alliance | AETECH Innovations Singapore</title>
+    <meta
+      name="description"
+      content="Register your interest in ASIAN, the Alliance for Sustainable Innovation Across ASEAN Nations. Partner with AETECH Innovations Singapore on joint projects and knowledge-sharing across ASEAN, Asia-Pacific and Europe."
+    />
+    <meta name="theme-color" content="#14213D" />
+
+    <meta property="og:title" content="Be part of the ASIAN Alliance" />
+    <meta
+      property="og:description"
+      content="Alliance for Sustainable Innovation Across ASEAN Nations. Register your interest as a partner."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/alliance.css" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-chrome-192x192.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#join-form">Skip to the form</a>
+
+    <div data-include="topbar" data-variant="overlay"></div>
+
+    <main>
+      <!-- =====================================================
+             ONE SCREEN: pitch on the left, compact form on the right.
+             Background photo + navy tint are set in alliance.css (.join).
+        ====================================================== -->
+      <section class="join">
+        <div class="join-inner">
+          <!-- ---------- Left: the pitch ---------- -->
+          <div class="join-intro">
+            <div class="intro-top">
+              <p class="forum-tag">SustaInnovation Forum 2026</p>
+
+              <h1>
+                Be part of
+                <span>the alliance.</span>
+              </h1>
+
+              <p class="join-lede">
+                ASIAN is the Alliance for Sustainable Innovation Across ASEAN
+                Nations. It brings institutions together to build joint projects
+                and share knowledge across ASEAN, the wider Asia-Pacific region,
+                and Europe.
+              </p>
+            </div>
+
+            <!-- Reach map: ASEAN at the centre, widening outward -->
+            <svg
+              class="reach"
+              viewBox="0 0 480 460"
+              preserveAspectRatio="xMinYMax meet"
+              role="img"
+              aria-label="Diagram of the alliance's reach: ASEAN at the centre, widening to the Asia-Pacific region and Europe."
+            >
+              <g fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.2">
+                <circle cx="60" cy="230" r="54" />
+                <circle cx="60" cy="230" r="195" />
+                <circle cx="60" cy="230" r="345" />
+              </g>
+              <g
+                stroke="#FCA311"
+                stroke-width="2"
+                stroke-dasharray="4 7"
+                fill="none"
+              >
+                <line x1="60" y1="230" x2="237" y2="313" />
+                <line x1="60" y1="230" x2="384" y2="112" />
+              </g>
+              <circle cx="60" cy="230" r="13" fill="#FCA311" />
+              <circle cx="237" cy="313" r="9" fill="#ffffff" />
+              <circle cx="384" cy="112" r="9" fill="#ffffff" />
+              <g
+                fill="#ffffff"
+                font-family="Arial, Helvetica, sans-serif"
+                font-size="20"
+              >
+                <text x="60" y="288" text-anchor="middle" font-weight="700">
+                  ASEAN
+                </text>
+                <text x="256" y="344">Asia-Pacific</text>
+                <text x="402" y="104">Europe</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- ---------- Right: the form ---------- -->
+          <div class="join-card" id="join-form" tabindex="-1">
+            <form id="alliance-form" class="alliance-form" novalidate>
+              <div class="card-head">
+                <h2>Strategic Alliance Commitment Form</h2>
+                <p>
+                  Tell us who you are and how you would like to take part. This
+                  is an expression of interest only and does not commit your
+                  institution to anything.
+                </p>
+              </div>
+
+              <!-- Honeypot: real people never see or fill this -->
+              <div class="hp" aria-hidden="true">
+                <label for="website">Leave this field empty</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- ---------- Representative and institution ---------- -->
+              <fieldset class="group">
+                <legend>Representative and institution</legend>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="full-name">Full name</label>
+                    <input
+                      type="text"
+                      id="full-name"
+                      name="full_name"
+                      autocomplete="name"
+                      required
+                    />
+                    <p class="error" id="full-name-error" role="alert"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="position">Position / Title</label>
+                    <input
+                      type="text"
+                      id="position"
+                      name="position"
+                      autocomplete="organization-title"
+                      required
+                    />
+                    <p class="error" id="position-error" role="alert"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="organization">Organization / Institution</label>
+                    <input
+                      type="text"
+                      id="organization"
+                      name="organization"
+                      autocomplete="organization"
+                      required
+                    />
+                    <p class="error" id="organization-error" role="alert"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="country">Country / Territory</label>
+                    <input
+                      type="text"
+                      id="country"
+                      name="country"
+                      list="country-list"
+                      autocomplete="country-name"
+                      required
+                    />
+                    <datalist id="country-list">
+                      <option value="Brunei"></option>
+                      <option value="Cambodia"></option>
+                      <option value="Indonesia"></option>
+                      <option value="Laos"></option>
+                      <option value="Malaysia"></option>
+                      <option value="Myanmar"></option>
+                      <option value="Philippines"></option>
+                      <option value="Singapore"></option>
+                      <option value="Thailand"></option>
+                      <option value="Timor-Leste"></option>
+                      <option value="Vietnam"></option>
+                      <option value="Australia"></option>
+                      <option value="China"></option>
+                      <option value="Hong Kong SAR"></option>
+                      <option value="India"></option>
+                      <option value="Japan"></option>
+                      <option value="New Zealand"></option>
+                      <option value="South Korea"></option>
+                      <option value="Taiwan"></option>
+                    </datalist>
+                    <p class="error" id="country-error" role="alert"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="email">Email address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      autocomplete="email"
+                      inputmode="email"
+                      required
+                    />
+                    <p class="error" id="email-error" role="alert"></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="phone">Phone / WhatsApp</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      placeholder="e.g. +63 900 000 0000"
+                      required
+                    />
+                    <p class="error" id="phone-error" role="alert"></p>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ---------- Areas of contribution ---------- -->
+              <fieldset class="group">
+                <legend>
+                  Areas of contribution
+                  <span class="hint">Check all that apply</span>
+                </legend>
+
+                <div class="choices chips">
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="area-research"
+                      name="areas"
+                      value="Research & Innovation"
+                    />
+                    <label for="area-research">Research &amp; Innovation</label>
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="area-industry"
+                      name="areas"
+                      value="Industry Partnerships"
+                    />
+                    <label for="area-industry">Industry Partnerships</label>
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="area-policy"
+                      name="areas"
+                      value="Policy & Advocacy"
+                    />
+                    <label for="area-policy">Policy &amp; Advocacy</label>
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="area-education"
+                      name="areas"
+                      value="Education & Capacity Building"
+                    />
+                    <label for="area-education"
+                      >Education &amp; Capacity Building</label
+                    >
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="area-community"
+                      name="areas"
+                      value="Community Initiatives"
+                    />
+                    <label for="area-community">Community Initiatives</label>
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="area-other"
+                      name="areas"
+                      value="Other"
+                    />
+                    <label for="area-other">Other</label>
+                  </div>
+                </div>
+
+                <div class="field other-field" id="other-field" hidden>
+                  <label for="area-other-text"
+                    >Tell us your area of contribution</label
+                  >
+                  <input
+                    type="text"
+                    id="area-other-text"
+                    name="area_other"
+                    maxlength="120"
+                  />
+                </div>
+              </fieldset>
+
+              <!-- ---------- Participation preference ---------- -->
+              <fieldset class="group">
+                <legend>
+                  Participation preference
+                  <span class="hint">Check all that apply</span>
+                </legend>
+
+                <div class="choices rows">
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="pref-founding"
+                      name="preferences"
+                      value="Interested in joining as a founding partner"
+                    />
+                    <label for="pref-founding"
+                      >Interested in joining as a founding partner</label
+                    >
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="pref-signatory"
+                      name="preferences"
+                      value="Signing as an authorized representative of my institution"
+                    />
+                    <label for="pref-signatory"
+                      >Signing as an authorized representative of my
+                      institution</label
+                    >
+                  </div>
+
+                  <div class="choice">
+                    <input
+                      type="checkbox"
+                      id="pref-learn"
+                      name="preferences"
+                      value="Interested in learning more before committing"
+                    />
+                    <label for="pref-learn"
+                      >Interested in learning more before committing</label
+                    >
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ---------- Commitment statement + consent + submit ---------- -->
+              <div class="submit-area">
+                <p class="commitment" id="commitment-title">
+                  <strong>Strategic alliance commitment.</strong>
+                  I express interest in advancing sustainability and innovation
+                  through joint projects and knowledge-sharing among partners in
+                  ASEAN, the wider Asia-Pacific region, and Europe.
+                </p>
+
+                <div class="choice consent">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    name="consent"
+                    value="Yes"
+                    required
+                  />
+                  <label for="consent"
+                    >I agree to be contacted about alliance activities and
+                    partnerships.</label
+                  >
+                </div>
+                <p class="error" id="consent-error" role="alert"></p>
+
+                <p
+                  class="form-status"
+                  id="form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+
+                <button type="submit" class="submit" id="submit-btn">
+                  <span class="submit-label">Submit my interest</span>
+                </button>
+
+                <p class="record-note">
+                  Records an expression of interest in collaboration. Submitted
+                  on <time id="today"></time>.
+                </p>
+              </div>
+            </form>
+
+            <!-- Shown after a successful submit -->
+            <div class="success" id="success" hidden tabindex="-1">
+              <div class="success-mark" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12.5l4.5 4.5L19 7.5" />
+                </svg>
+              </div>
+              <h2 id="success-title">Thank you.</h2>
+              <p id="success-text"></p>
+              <a class="success-link" href="https://www.aetechinnovations.sg/"
+                >Back to aetechinnovations.sg</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-include="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="/js/layout.js" defer></script>
+    <script src="/js/alliance.js"></script>
+  </body>
+</html>

@@ -1,533 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>About | AETECH Innovations Singapore</title>
 
-    <link rel="stylesheet" href="../css/about.css">
-</head>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/about.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-chrome-192x192.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
 
-<body>
-
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
-
-    <header class="site">
-
-        <nav class="nav">
-
-            <!-- LOGO -->
-            <a href="../index.html" class="logo">
-                <img
-                    src="../assets/aetech-logo1.png"
-                    alt="AETECH Innovations"
-                >
-            </a>
-
-
-            <!-- DESKTOP NAVIGATION: CENTERED -->
-            <ul class="nav-links">
-
-                <li>
-                    <a href="../index.html">Home</a>
-                </li>
-
-                <li>
-                    <a href="services-products.html">
-                        Services and Products
-                    </a>
-                </li>
-
-                <li>
-                    <a href="about.html" aria-current="page">About</a>
-                </li>
-
-            </ul>
-
-
-            <!-- CONTACT BUTTON: RIGHT SIDE -->
-            <a href="contact.html" class="contact-btn desktop-contact-btn">
-                Contact Us
-            </a>
-
-
-            <!-- MOBILE MENU BUTTON -->
-            <button
-                class="hamburger"
-                type="button"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-                aria-controls="mobile-menu"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-
-            <!-- MOBILE NAVIGATION -->
-            <div class="mobile-menu" id="mobile-menu">
-
-                <ul>
-
-                    <li>
-                        <a href="../index.html">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="services-products.html">
-                            Services and Products
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="contact.html"
-                            class="mobile-contact-btn"
-                        >
-                            Contact Us
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </nav>
-
-    </header>
+  <body>
+    <div data-include="topbar" data-variant="overlay"></div>
 
     <main>
-        <!-- ABOUT HERO -->
-        <section class="about-hero">
+      <!-- ABOUT HERO -->
+      <section class="about-hero">
+        <div class="about-hero-container">
+          <!-- LEFT: INTRODUCTION -->
+          <div class="about-hero-content">
+            <div class="about-hero-label">ABOUT AETECH</div>
 
-            <div class="about-hero-container">
+            <h1>
+              Shaping Smarter Communities Through
+              <span>Intelligent Solutions.</span>
+            </h1>
 
-                <!-- LEFT: INTRODUCTION -->
-                <div class="about-hero-content">
+            <p>
+              AETECH Innovations brings together technology, strategy, and
+              innovation to create practical solutions for smarter cities,
+              education, and a more connected future.
+            </p>
 
-                    <div class="about-hero-label">
-                        ABOUT AETECH
-                    </div>
+            <a href="#our-story" class="about-hero-link">
+              Discover our story
+              <span>→</span>
+            </a>
+          </div>
 
-                    <h1>
-                        Shaping Smarter
-                        Communities Through
-                        <span>Intelligent Solutions.</span>
-                    </h1>
+          <!-- RIGHT: COMPANY VIDEO -->
+          <div class="about-hero-media">
+            <div class="about-video-frame">
+              <video
+                id="aboutCompanyVideo"
+                class="about-company-video"
+                muted
+                playsinline
+                preload="metadata"
+                poster="../assets/thumbnail.png"
+              >
+                <source src="../assets/aetech-intro.mp4" type="video/mp4" />
 
-                    <p>
-                        AETECH Innovations brings together technology, strategy,
-                        and innovation to create practical solutions for smarter
-                        cities, education, and a more connected future.
-                    </p>
+                Your browser does not support the video tag.
+              </video>
 
-                    <a href="#our-story" class="about-hero-link">
-                        Discover our story
-                        <span>→</span>
-                    </a>
-
+              <!-- VIDEO OVERLAY -->
+              <div class="about-video-overlay">
+                <div class="about-video-tag">
+                  <span></span>
+                  AETECH INNOVATIONS
                 </div>
 
+                <button
+                  type="button"
+                  class="about-video-play"
+                  id="aboutVideoPlay"
+                  aria-label="Play company introduction video"
+                >
+                  <span class="play-icon">▶</span>
+                </button>
 
-                <!-- RIGHT: COMPANY VIDEO -->
-                <div class="about-hero-media">
-
-                    <div class="about-video-frame">
-
-                        <video
-                            id="aboutCompanyVideo"
-                            class="about-company-video"
-                            playsinline
-                            preload="metadata"
-                            poster="../assets/thumbnail.png"
-                        >
-                            <source
-                                src="../assets/aetech-intro.mp4"
-                                type="video/mp4"
-                            >
-
-                            Your browser does not support the video tag.
-                        </video>
-
-
-                        <!-- VIDEO OVERLAY -->
-                        <div class="about-video-overlay">
-
-                            <div class="about-video-tag">
-                                <span></span>
-                                AETECH INNOVATIONS
-                            </div>
-
-                            <button
-                                type="button"
-                                class="about-video-play"
-                                id="aboutVideoPlay"
-                                aria-label="Play company introduction video"
-                            >
-                                <span class="play-icon">▶</span>
-                            </button>
-
-                            <div class="about-video-caption">
-                                <span>WATCH OUR STORY</span>
-                                <small>Company Introduction</small>
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                <div class="about-video-caption">
+                  <span>WATCH OUR STORY</span>
+                  <small>Company Introduction</small>
                 </div>
-
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-        </section>
-
-        <!-- =====================================================
+      <!-- =====================================================
             OUR MISSION
         ====================================================== -->
 
-        <section class="about-mission" id="our-story">
+      <section class="about-mission" id="our-story">
+        <div class="about-mission-container">
+          <!-- SECTION LABEL -->
+          <div class="about-mission-label">
+            OUR MISSION
+            <span></span>
+          </div>
 
-            <div class="about-mission-container">
+          <!-- MAIN TITLE -->
+          <h2>
+            What We
+            <span>Believe.</span>
+          </h2>
 
-                <!-- SECTION LABEL -->
-                <div class="about-mission-label">
-                    OUR MISSION
-                    <span></span>
-                </div>
-
-                <!-- MAIN TITLE -->
-                <h2>
-                    What We
-                    <span>Believe.</span>
-                </h2>
-
-                <!-- CONTENT -->
-                <div class="about-mission-content">
-
-                    <!-- LEFT: IMAGE -->
-                    <div class="about-mission-image">
-                        <img
-                            src="../assets/about-mission.avif"
-                            alt="AETECH Innovations team working together"
-                        >
-                    </div>
-
-                    <!-- RIGHT: TEXT -->
-                    <div class="about-mission-text">
-
-                        <p>
-                            At AETECH Innovations, we believe technology should
-                            create meaningful impact. We bring together innovation,
-                            strategy, and practical solutions to help communities,
-                            organizations, and institutions move toward a smarter
-                            and more connected future.
-                        </p>
-
-                        <p>
-                            Our goal is to make digital transformation more
-                            accessible, purposeful, and human-centered — turning
-                            ideas into solutions that improve the way people learn,
-                            work, live, and connect.
-                        </p>
-                    </div>
-                </div>
+          <!-- CONTENT -->
+          <div class="about-mission-content">
+            <!-- LEFT: IMAGE -->
+            <div class="about-mission-image">
+              <img
+                src="../assets/about-mission.avif"
+                alt="AETECH Innovations team working together"
+              />
             </div>
-        </section>
 
-        <!-- =====================================================
+            <!-- RIGHT: TEXT -->
+            <div class="about-mission-text">
+              <p>
+                At AETECH Innovations, we believe technology should create
+                meaningful impact. We bring together innovation, strategy, and
+                practical solutions to help communities, organizations, and
+                institutions move toward a smarter and more connected future.
+              </p>
+
+              <p>
+                Our goal is to make digital transformation more accessible,
+                purposeful, and human-centered — turning ideas into solutions
+                that improve the way people learn, work, live, and connect.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
             WHAT WE DELIVER
         ====================================================== -->
 
-        <section class="about-deliver" id="what-we-deliver">
+      <section class="about-deliver" id="what-we-deliver">
+        <div class="about-deliver-container">
+          <!-- SECTION LABEL -->
+          <div class="about-deliver-label">
+            WHAT WE DELIVER
+            <span></span>
+          </div>
 
-            <div class="about-deliver-container">
+          <!-- MAIN TITLE -->
+          <h2>
+            Turning Ideas Into
+            <span>Practical Impact.</span>
+          </h2>
 
-                <!-- SECTION LABEL -->
-                <div class="about-deliver-label">
-                    WHAT WE DELIVER
-                    <span></span>
-                </div>
+          <!-- CONTENT -->
+          <div class="about-deliver-content">
+            <!-- LEFT: TEXT -->
+            <div class="about-deliver-text">
+              <div class="about-deliver-accent"></div>
 
+              <p class="about-deliver-intro">
+                We provide AI-powered consulting services that turn ambitious
+                goals into achievable strategies. From Smart City Design
+                Advisory to Digital Transformation Solutions and AI Training for
+                Educators, our work bridges cutting-edge technology with
+                practical implementation.
+              </p>
 
-                <!-- MAIN TITLE -->
-                <h2>
-                    Turning Ideas Into
-                    <span>Practical Impact.</span>
-                </h2>
+              <p>
+                We don't just talk innovation — we deliver it through tailored,
+                forward-thinking solutions that help clients lead confidently in
+                an ever-changing world.
+              </p>
 
+              <!-- HIGHLIGHTS -->
+              <div class="about-deliver-highlights">
+                <!-- 01 -->
+                <div class="deliver-highlight">
+                  <span class="deliver-number">01</span>
 
-                <!-- CONTENT -->
-                <div class="about-deliver-content">
-
-                    <!-- LEFT: TEXT -->
-                    <div class="about-deliver-text">
-
-                        <div class="about-deliver-accent"></div>
-
-                        <p class="about-deliver-intro">
-                            We provide AI-powered consulting services that turn
-                            ambitious goals into achievable strategies. From Smart
-                            City Design Advisory to Digital Transformation Solutions
-                            and AI Training for Educators, our work bridges
-                            cutting-edge technology with practical implementation.
-                        </p>
-
-                        <p>
-                            We don't just talk innovation — we deliver it through
-                            tailored, forward-thinking solutions that help clients
-                            lead confidently in an ever-changing world.
-                        </p>
-
-
-                        <!-- HIGHLIGHTS -->
-                        <div class="about-deliver-highlights">
-
-                            <!-- 01 -->
-                            <div class="deliver-highlight">
-
-                                <span class="deliver-number">01</span>
-
-                                <div class="deliver-highlight-content">
-
-                                    <div class="deliver-icon">
-                                        <span>✧</span>
-                                    </div>
-
-                                    <div>
-                                        <strong>Smart Solutions</strong>
-
-                                        <small>
-                                            Technology designed around
-                                            real-world needs.
-                                        </small>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- 02 -->
-                            <div class="deliver-highlight">
-
-                                <span class="deliver-number">02</span>
-
-                                <div class="deliver-highlight-content">
-
-                                    <div class="deliver-icon">
-                                        <span>◎</span>
-                                    </div>
-
-                                    <div>
-                                        <strong>Practical Strategy</strong>
-
-                                        <small>
-                                            Turning ideas into
-                                            actionable solutions.
-                                        </small>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- 03 -->
-                            <div class="deliver-highlight">
-
-                                <span class="deliver-number">03</span>
-
-                                <div class="deliver-highlight-content">
-
-                                    <div class="deliver-icon">
-                                        <span>♧</span>
-                                    </div>
-
-                                    <div>
-                                        <strong>Human-Centered Impact</strong>
-
-                                        <small>
-                                            Innovation that improves
-                                            everyday experiences.
-                                        </small>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                  <div class="deliver-highlight-content">
+                    <div class="deliver-icon">
+                      <span>✧</span>
                     </div>
 
+                    <div>
+                      <strong>Smart Solutions</strong>
 
-                    <!-- RIGHT: TWO-IMAGE COMPOSITION -->
-                    <div class="about-deliver-visual">
-
-                        <!-- MAIN IMAGE -->
-                        <div class="about-deliver-image-main">
-
-                            <img
-                                src="../assets/about-deliver.avif"
-                                alt="AETECH Innovations demonstrating robotics and technology"
-                            >
-
-                            <div class="about-deliver-image-label">
-                                <span></span>
-                                INNOVATION IN ACTION
-                            </div>
-
-                        </div>
-
-
-                        <!-- FLOATING TEAM IMAGE -->
-                        <div class="about-deliver-image-secondary">
-
-                            <img
-                                src="../assets/about-team.avif"
-                                alt="AETECH Innovations team with Weston Robot"
-                            >
-                        </div>
-
+                      <small>
+                        Technology designed around real-world needs.
+                      </small>
                     </div>
-
+                  </div>
                 </div>
 
+                <!-- 02 -->
+                <div class="deliver-highlight">
+                  <span class="deliver-number">02</span>
+
+                  <div class="deliver-highlight-content">
+                    <div class="deliver-icon">
+                      <span>◎</span>
+                    </div>
+
+                    <div>
+                      <strong>Practical Strategy</strong>
+
+                      <small> Turning ideas into actionable solutions. </small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 03 -->
+                <div class="deliver-highlight">
+                  <span class="deliver-number">03</span>
+
+                  <div class="deliver-highlight-content">
+                    <div class="deliver-icon">
+                      <span>♧</span>
+                    </div>
+
+                    <div>
+                      <strong>Human-Centered Impact</strong>
+
+                      <small>
+                        Innovation that improves everyday experiences.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-        </section>
+            <!-- RIGHT: TWO-IMAGE COMPOSITION -->
+            <div class="about-deliver-visual">
+              <!-- MAIN IMAGE -->
+              <div class="about-deliver-image-main">
+                <img
+                  src="../assets/about-deliver.avif"
+                  alt="AETECH Innovations demonstrating robotics and technology"
+                />
+
+                <div class="about-deliver-image-label">
+                  <span></span>
+                  INNOVATION IN ACTION
+                </div>
+              </div>
+
+              <!-- FLOATING TEAM IMAGE -->
+              <div class="about-deliver-image-secondary">
+                <img
+                  src="../assets/about-team.avif"
+                  alt="AETECH Innovations team with Weston Robot"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
+    <div data-include="footer"></div>
 
-        <!-- NEWSLETTER -->
-        <div class="footer-newsletter">
-
-            <div class="footer-newsletter-inner">
-
-                <span class="footer-label">
-                    STAY CONNECTED
-                </span>
-
-                <h2>
-                    Be the First to Receive the Latest News From
-                    AETECH Innovations.
-                </h2>
-
-                <p>
-                    Stay updated with our latest innovations, projects,
-                    events, and developments.
-                </p>
-
-                <form class="newsletter-form">
-
-                    <input
-                        type="email"
-                        placeholder="Enter your email address"
-                        aria-label="Email address"
-                        required
-                    >
-
-                    <button type="submit">
-                        SUBSCRIBE
-                        <span>→</span>
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
-
-
-        <!-- FOOTER MAIN -->
-        <div class="footer-main">
-
-            <div class="footer-grid">
-
-                <!-- BRAND -->
-                <div class="footer-brand">
-
-                    <a href="../index.html" class="footer-logo">
-
-                        <img
-                            src="../assets/aetech-logo1.png"
-                            alt="AETECH Innovations Singapore"
-                        >
-
-                    </a>
-
-                    <p>
-                        Empowering cities.<br>
-                        Educating futures.<br>
-                        Engineering tomorrow.
-                    </p>
-
-                </div>
-
-
-                <!-- COMPANY -->
-                <div class="footer-column">
-                    <h3>COMPANY</h3>
-                    <a href="../index.html">Home</a>
-                    <a href="services-products.html">Services &amp; Products</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact Us</a>
-                </div>
-
-
-                <!-- CONTACT -->
-                <div class="footer-column">
-
-                    <h3>CONTACT</h3>
-
-                    <p>
-                        innovations.aetech@gmail.com
-                        edwin.astorga@aetechinnovations.sg
-                    </p>
-
-                    <p>
-                        +65 8725 7162 <br>
-                        +63 947 596 1606
-                    </p>
-
-                    <p>
-                        10 Anson Road, #22-02,<br>
-                        International Plaza,<br>
-                        Singapore 079903
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- COPYRIGHT -->
-        <div class="footer-bottom">
-
-            <p>
-                © 2025 AETECH Innovations Singapore.
-                All Rights Reserved.
-            </p>
-
-        </div>
-
-    </footer>
-
+    <script src="/js/layout.js" defer></script>
     <script src="../js/about.js"></script>
-</body>
-
+  </body>
 </html>

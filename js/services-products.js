@@ -1,830 +1,428 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-    /* =====================================================
+  /* =====================================================
        CAROUSEL
     ====================================================== */
 
-    const slider =
-        document.querySelector(".what-we-do-slider");
+  const slider = document.querySelector(".what-we-do-slider");
 
-    const track =
-        document.querySelector(".what-we-do-track");
+  const track = document.querySelector(".what-we-do-track");
 
-    const prevButton =
-        document.querySelector(".carousel-prev");
+  const prevButton = document.querySelector(".carousel-prev");
 
-    const nextButton =
-        document.querySelector(".carousel-next");
+  const nextButton = document.querySelector(".carousel-next");
 
-    const cards =
-        document.querySelectorAll(".what-do-card");
+  const cards = document.querySelectorAll(".what-do-card");
 
+  if (slider && track && cards.length) {
+    /*
+     * Calculate how far the carousel should move.
+     */
+    function getScrollAmount() {
+      const card = cards[0];
 
-    if (slider && track && cards.length) {
+      const cardWidth = card.offsetWidth;
 
-        /*
-         * Calculate how far the carousel should move.
-         */
-        function getScrollAmount() {
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
 
-            const card = cards[0];
-
-            const cardWidth =
-                card.offsetWidth;
-
-            const gap =
-                parseFloat(
-                    getComputedStyle(track).gap
-                ) || 0;
-
-            return cardWidth + gap;
-        }
-
-
-        /*
-         * NEXT
-         */
-        if (nextButton) {
-
-            nextButton.addEventListener(
-                "click",
-                function () {
-
-                    slider.scrollBy({
-                        left: getScrollAmount(),
-                        behavior: "smooth"
-                    });
-
-                }
-            );
-
-        }
-
-
-        /*
-         * PREVIOUS
-         */
-        if (prevButton) {
-
-            prevButton.addEventListener(
-                "click",
-                function () {
-
-                    slider.scrollBy({
-                        left: -getScrollAmount(),
-                        behavior: "smooth"
-                    });
-
-                }
-            );
-
-        }
-
+      return cardWidth + gap;
     }
 
-
-
-    /* =====================================================
-       MOBILE HAMBURGER MENU
-    ====================================================== */
-
-    const hamburger =
-        document.querySelector(".hamburger");
-
-    const mobileMenu =
-        document.querySelector(".mobile-menu");
-
-
-    if (hamburger && mobileMenu) {
-
-        /*
-         * OPEN / CLOSE MENU
-         */
-        hamburger.addEventListener(
-            "click",
-            function () {
-
-                const isOpen =
-                    mobileMenu.classList.contains("open");
-
-
-                if (isOpen) {
-
-                    mobileMenu.classList.remove("open");
-
-                    hamburger.classList.remove("active");
-
-                    hamburger.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                } else {
-
-                    mobileMenu.classList.add("open");
-
-                    hamburger.classList.add("active");
-
-                    hamburger.setAttribute(
-                        "aria-expanded",
-                        "true"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /*
-         * CLOSE MENU WHEN A LINK IS CLICKED
-         */
-        const mobileLinks =
-            mobileMenu.querySelectorAll("a");
-
-
-        mobileLinks.forEach(function (link) {
-
-            link.addEventListener(
-                "click",
-                function () {
-
-                    mobileMenu.classList.remove("open");
-
-                    hamburger.classList.remove("active");
-
-                    hamburger.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-            );
-
+    /*
+     * NEXT
+     */
+    if (nextButton) {
+      nextButton.addEventListener("click", function () {
+        slider.scrollBy({
+          left: getScrollAmount(),
+          behavior: "smooth",
         });
-
-
-        /*
-         * CLOSE MENU WHEN CLICKING OUTSIDE
-         */
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                const clickedInsideMenu =
-                    mobileMenu.contains(event.target);
-
-                const clickedHamburger =
-                    hamburger.contains(event.target);
-
-
-                if (
-                    !clickedInsideMenu &&
-                    !clickedHamburger
-                ) {
-
-                    mobileMenu.classList.remove("open");
-
-                    hamburger.classList.remove("active");
-
-                    hamburger.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /*
-         * CLOSE MENU WHEN SCREEN BECOMES DESKTOP SIZE
-         */
-        window.addEventListener(
-            "resize",
-            function () {
-
-                if (window.innerWidth > 1000) {
-
-                    mobileMenu.classList.remove("open");
-
-                    hamburger.classList.remove("active");
-
-                    hamburger.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
-            }
-        );
-
+      });
     }
 
-        /* =====================================================
+    /*
+     * PREVIOUS
+     */
+    if (prevButton) {
+      prevButton.addEventListener("click", function () {
+        slider.scrollBy({
+          left: -getScrollAmount(),
+          behavior: "smooth",
+        });
+      });
+    }
+  }
+
+  /* Mobile menu, topbar and footer are handled by /js/layout.js */
+
+  /* =====================================================
        FEATURED PRODUCT VIDEO CONTROLS
     ====================================================== */
 
-    const featuredVideo =
-        document.getElementById("featuredProductVideo");
+  const featuredVideo = document.getElementById("featuredProductVideo");
 
-    const videoPlayPause =
-        document.getElementById("videoPlayPause");
+  const videoPlayPause = document.getElementById("videoPlayPause");
 
-    const videoBackward =
-        document.getElementById("videoBackward");
+  const videoBackward = document.getElementById("videoBackward");
 
-    const videoForward =
-        document.getElementById("videoForward");
+  const videoForward = document.getElementById("videoForward");
 
-    const videoFullscreen =
-        document.getElementById("videoFullscreen");
+  const videoFullscreen = document.getElementById("videoFullscreen");
 
-    const videoProgressBar =
-        document.getElementById("videoProgressBar");
+  const videoProgressBar = document.getElementById("videoProgressBar");
 
-    const videoProgressContainer =
-        document.querySelector(".video-progress-container");
+  const videoProgressContainer = document.querySelector(
+    ".video-progress-container",
+  );
 
-
-    if (featuredVideo) {
-
-
-        /* =================================================
+  if (featuredVideo) {
+    /* =================================================
            PLAY / PAUSE
         ================================================== */
 
-        if (videoPlayPause) {
+    if (videoPlayPause) {
+      videoPlayPause.addEventListener("click", function () {
+        if (featuredVideo.paused) {
+          featuredVideo.play();
 
-            videoPlayPause.addEventListener(
-                "click",
-                function () {
+          videoPlayPause.textContent = "❚❚";
 
-                    if (featuredVideo.paused) {
+          videoPlayPause.setAttribute("aria-label", "Pause video");
+        } else {
+          featuredVideo.pause();
 
-                        featuredVideo.play();
+          videoPlayPause.textContent = "▶";
 
-                        videoPlayPause.textContent = "❚❚";
-
-                        videoPlayPause.setAttribute(
-                            "aria-label",
-                            "Pause video"
-                        );
-
-                    } else {
-
-                        featuredVideo.pause();
-
-                        videoPlayPause.textContent = "▶";
-
-                        videoPlayPause.setAttribute(
-                            "aria-label",
-                            "Play video"
-                        );
-
-                    }
-
-                }
-            );
-
+          videoPlayPause.setAttribute("aria-label", "Play video");
         }
+      });
+    }
 
-
-        /* =================================================
+    /* =================================================
            BACKWARD 10 SECONDS
         ================================================== */
 
-        if (videoBackward) {
+    if (videoBackward) {
+      videoBackward.addEventListener("click", function () {
+        featuredVideo.currentTime = Math.max(0, featuredVideo.currentTime - 10);
+      });
+    }
 
-            videoBackward.addEventListener(
-                "click",
-                function () {
-
-                    featuredVideo.currentTime =
-                        Math.max(
-                            0,
-                            featuredVideo.currentTime - 10
-                        );
-
-                }
-            );
-
-        }
-
-
-        /* =================================================
+    /* =================================================
            FORWARD 10 SECONDS
         ================================================== */
 
-        if (videoForward) {
+    if (videoForward) {
+      videoForward.addEventListener("click", function () {
+        featuredVideo.currentTime = Math.min(
+          featuredVideo.duration,
+          featuredVideo.currentTime + 10,
+        );
+      });
+    }
 
-            videoForward.addEventListener(
-                "click",
-                function () {
-
-                    featuredVideo.currentTime =
-                        Math.min(
-                            featuredVideo.duration,
-                            featuredVideo.currentTime + 10
-                        );
-
-                }
-            );
-
-        }
-
-
-        /* =================================================
+    /* =================================================
            UPDATE PLAY / PAUSE ICON
         ================================================== */
 
-        featuredVideo.addEventListener(
-            "play",
-            function () {
+    featuredVideo.addEventListener("play", function () {
+      if (videoPlayPause) {
+        videoPlayPause.textContent = "❚❚";
 
-                if (videoPlayPause) {
+        videoPlayPause.setAttribute("aria-label", "Pause video");
+      }
+    });
 
-                    videoPlayPause.textContent = "❚❚";
+    featuredVideo.addEventListener("pause", function () {
+      if (videoPlayPause) {
+        videoPlayPause.textContent = "▶";
 
-                    videoPlayPause.setAttribute(
-                        "aria-label",
-                        "Pause video"
-                    );
+        videoPlayPause.setAttribute("aria-label", "Play video");
+      }
+    });
 
-                }
-
-            }
-        );
-
-
-        featuredVideo.addEventListener(
-            "pause",
-            function () {
-
-                if (videoPlayPause) {
-
-                    videoPlayPause.textContent = "▶";
-
-                    videoPlayPause.setAttribute(
-                        "aria-label",
-                        "Play video"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* =================================================
+    /* =================================================
            UPDATE PROGRESS BAR
         ================================================== */
 
-        featuredVideo.addEventListener(
-            "timeupdate",
-            function () {
+    featuredVideo.addEventListener("timeupdate", function () {
+      if (featuredVideo.duration && videoProgressBar) {
+        const percentage =
+          (featuredVideo.currentTime / featuredVideo.duration) * 100;
 
-                if (
-                    featuredVideo.duration &&
-                    videoProgressBar
-                ) {
+        videoProgressBar.style.width = percentage + "%";
+      }
+    });
 
-                    const percentage =
-                        (
-                            featuredVideo.currentTime /
-                            featuredVideo.duration
-                        ) * 100;
-
-                    videoProgressBar.style.width =
-                        percentage + "%";
-
-                }
-
-            }
-        );
-
-
-        /* =================================================
+    /* =================================================
            CLICK PROGRESS BAR TO SEEK
         ================================================== */
 
-        if (videoProgressContainer) {
+    if (videoProgressContainer) {
+      videoProgressContainer.addEventListener("click", function (event) {
+        const rect = videoProgressContainer.getBoundingClientRect();
 
-            videoProgressContainer.addEventListener(
-                "click",
-                function (event) {
+        const clickPosition = event.clientX - rect.left;
 
-                    const rect =
-                        videoProgressContainer.getBoundingClientRect();
+        const percentage = clickPosition / rect.width;
 
-                    const clickPosition =
-                        event.clientX - rect.left;
-
-                    const percentage =
-                        clickPosition / rect.width;
-
-                    if (featuredVideo.duration) {
-
-                        featuredVideo.currentTime =
-                            percentage *
-                            featuredVideo.duration;
-
-                    }
-
-                }
-            );
-
+        if (featuredVideo.duration) {
+          featuredVideo.currentTime = percentage * featuredVideo.duration;
         }
+      });
+    }
 
-
-        /* =================================================
+    /* =================================================
            FULLSCREEN
         ================================================== */
 
-        if (videoFullscreen) {
-
-            videoFullscreen.addEventListener(
-                "click",
-                function () {
-
-                    if (
-                        document.fullscreenElement
-                    ) {
-
-                        document.exitFullscreen();
-
-                    } else {
-
-                        if (
-                            featuredVideo.requestFullscreen
-                        ) {
-
-                            featuredVideo.requestFullscreen();
-
-                        } else if (
-                            featuredVideo.webkitEnterFullscreen
-                        ) {
-
-                            /*
-                             * iPhone / Safari fallback
-                             */
-                            featuredVideo.webkitEnterFullscreen();
-
-                        }
-
-                    }
-
-                }
-            );
-
+    if (videoFullscreen) {
+      videoFullscreen.addEventListener("click", function () {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          if (featuredVideo.requestFullscreen) {
+            featuredVideo.requestFullscreen();
+          } else if (featuredVideo.webkitEnterFullscreen) {
+            /*
+             * iPhone / Safari fallback
+             */
+            featuredVideo.webkitEnterFullscreen();
+          }
         }
+      });
+    }
 
-
-        /* =================================================
+    /* =================================================
            UPDATE FULLSCREEN ICON
         ================================================== */
 
-        document.addEventListener(
-            "fullscreenchange",
-            function () {
+    document.addEventListener("fullscreenchange", function () {
+      if (!videoFullscreen) return;
 
-                if (!videoFullscreen) return;
+      if (document.fullscreenElement) {
+        videoFullscreen.textContent = "×";
 
+        videoFullscreen.setAttribute("aria-label", "Exit fullscreen");
+      } else {
+        videoFullscreen.textContent = "⛶";
 
-                if (document.fullscreenElement) {
+        videoFullscreen.setAttribute("aria-label", "Enter fullscreen");
+      }
+    });
+  }
 
-                    videoFullscreen.textContent = "×";
-
-                    videoFullscreen.setAttribute(
-                        "aria-label",
-                        "Exit fullscreen"
-                    );
-
-                } else {
-
-                    videoFullscreen.textContent = "⛶";
-
-                    videoFullscreen.setAttribute(
-                        "aria-label",
-                        "Enter fullscreen"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-    /* =====================================================
+  /* =====================================================
    CUSTOM VIDEO PLAYERS
 ====================================================== */
 
-const videoPlayers =
-    document.querySelectorAll(".custom-video-player");
+  const videoPlayers = document.querySelectorAll(".custom-video-player");
 
+  videoPlayers.forEach(function (player) {
+    const video = player.querySelector(".custom-video");
 
-videoPlayers.forEach(function (player) {
+    const playButton = player.querySelector(".play-pause");
 
-    const video =
-        player.querySelector(".custom-video");
+    const backwardButton = player.querySelector(".skip-backward");
 
-    const playButton =
-        player.querySelector(".play-pause");
+    const forwardButton = player.querySelector(".skip-forward");
 
-    const backwardButton =
-        player.querySelector(".skip-backward");
+    const progress = player.querySelector(".video-progress");
 
-    const forwardButton =
-        player.querySelector(".skip-forward");
+    const muteButton = player.querySelector(".mute-toggle");
 
-    const progress =
-        player.querySelector(".video-progress");
-
-    const muteButton =
-        player.querySelector(".mute-toggle");
-
-    const fullscreenButton =
-        player.querySelector(".fullscreen-toggle");
-
+    const fullscreenButton = player.querySelector(".fullscreen-toggle");
 
     if (!video) {
-        return;
+      return;
     }
-
 
     /* =================================================
        PLAY / PAUSE
     ================================================== */
 
     if (playButton) {
-
-        playButton.addEventListener(
-            "click",
-            function () {
-
-                if (video.paused) {
-
-                    video.play();
-
-                } else {
-
-                    video.pause();
-
-                }
-
-            }
-        );
-
+      playButton.addEventListener("click", function () {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
     }
-
 
     /* =================================================
        UPDATE PLAY BUTTON
     ================================================== */
 
-    video.addEventListener(
-        "play",
-        function () {
+    video.addEventListener("play", function () {
+      if (playButton) {
+        playButton.textContent = "❚❚";
 
-            if (playButton) {
+        playButton.setAttribute("aria-label", "Pause video");
+      }
+    });
 
-                playButton.textContent = "❚❚";
+    video.addEventListener("pause", function () {
+      if (playButton) {
+        playButton.textContent = "▶";
 
-                playButton.setAttribute(
-                    "aria-label",
-                    "Pause video"
-                );
-
-            }
-
-        }
-    );
-
-
-    video.addEventListener(
-        "pause",
-        function () {
-
-            if (playButton) {
-
-                playButton.textContent = "▶";
-
-                playButton.setAttribute(
-                    "aria-label",
-                    "Play video"
-                );
-
-            }
-
-        }
-    );
-
+        playButton.setAttribute("aria-label", "Play video");
+      }
+    });
 
     /* =================================================
        BACKWARD 10 SECONDS
     ================================================== */
 
     if (backwardButton) {
-
-        backwardButton.addEventListener(
-            "click",
-            function () {
-
-                video.currentTime =
-                    Math.max(
-                        0,
-                        video.currentTime - 10
-                    );
-
-            }
-        );
-
+      backwardButton.addEventListener("click", function () {
+        video.currentTime = Math.max(0, video.currentTime - 10);
+      });
     }
-
 
     /* =================================================
        FORWARD 10 SECONDS
     ================================================== */
 
     if (forwardButton) {
-
-        forwardButton.addEventListener(
-            "click",
-            function () {
-
-                video.currentTime =
-                    Math.min(
-                        video.duration,
-                        video.currentTime + 10
-                    );
-
-            }
-        );
-
+      forwardButton.addEventListener("click", function () {
+        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      });
     }
-
 
     /* =================================================
        UPDATE PROGRESS
     ================================================== */
 
-    video.addEventListener(
-        "timeupdate",
-        function () {
-
-            if (
-                progress &&
-                video.duration
-            ) {
-
-                progress.value =
-                    (
-                        video.currentTime /
-                        video.duration
-                    ) * 100;
-
-            }
-
-        }
-    );
-
+    video.addEventListener("timeupdate", function () {
+      if (progress && video.duration) {
+        progress.value = (video.currentTime / video.duration) * 100;
+      }
+    });
 
     /* =================================================
        SEEK
     ================================================== */
 
     if (progress) {
-
-        progress.addEventListener(
-            "input",
-            function () {
-
-                if (video.duration) {
-
-                    video.currentTime =
-                        (
-                            progress.value / 100
-                        ) *
-                        video.duration;
-
-                }
-
-            }
-        );
-
+      progress.addEventListener("input", function () {
+        if (video.duration) {
+          video.currentTime = (progress.value / 100) * video.duration;
+        }
+      });
     }
-
 
     /* =================================================
        MUTE / UNMUTE
     ================================================== */
 
     if (muteButton) {
+      muteButton.addEventListener("click", function () {
+        video.muted = !video.muted;
 
-        muteButton.addEventListener(
-            "click",
-            function () {
+        if (video.muted) {
+          muteButton.textContent = "🔇";
 
-                video.muted =
-                    !video.muted;
+          muteButton.setAttribute("aria-label", "Unmute video");
+        } else {
+          muteButton.textContent = "🔊";
 
-
-                if (video.muted) {
-
-                    muteButton.textContent = "🔇";
-
-                    muteButton.setAttribute(
-                        "aria-label",
-                        "Unmute video"
-                    );
-
-                } else {
-
-                    muteButton.textContent = "🔊";
-
-                    muteButton.setAttribute(
-                        "aria-label",
-                        "Mute video"
-                    );
-
-                }
-
-            }
-        );
-
+          muteButton.setAttribute("aria-label", "Mute video");
+        }
+      });
     }
-
 
     /* =================================================
        FULLSCREEN
     ================================================== */
 
     if (fullscreenButton) {
-
-        fullscreenButton.addEventListener(
-            "click",
-            function () {
-
-                if (!document.fullscreenElement) {
-
-                    if (
-                        player.requestFullscreen
-                    ) {
-
-                        player.requestFullscreen();
-
-                    } else if (
-                        video.webkitEnterFullscreen
-                    ) {
-
-                        video.webkitEnterFullscreen();
-
-                    }
-
-                } else {
-
-                    if (
-                        document.exitFullscreen
-                    ) {
-
-                        document.exitFullscreen();
-
-                    }
-
-                }
-
-            }
-        );
-
+      fullscreenButton.addEventListener("click", function () {
+        if (!document.fullscreenElement) {
+          if (player.requestFullscreen) {
+            player.requestFullscreen();
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      });
     }
-
 
     /* =================================================
        UPDATE FULLSCREEN ICON
     ================================================== */
 
-    document.addEventListener(
-        "fullscreenchange",
-        function () {
+    document.addEventListener("fullscreenchange", function () {
+      if (document.fullscreenElement === player) {
+        fullscreenButton.textContent = "⛶";
+      } else {
+        fullscreenButton.textContent = "⛶";
+      }
+    });
 
-            if (
-                document.fullscreenElement === player
-            ) {
+    /* =================================================
+       AUTO-HIDE CONTROLS
+       Always visible while paused. While playing they fade out after a
+       few seconds without mouse movement, touch or key presses, and come
+       back on hover / tap / keyboard focus.
+    ================================================== */
 
-                fullscreenButton.textContent = "⛶";
+    const controls = player.querySelector(".custom-video-controls");
 
-            } else {
+    if (controls) {
+      const HIDE_AFTER = 2500; // ms of inactivity before hiding
+      let hideTimer = null;
 
-                fullscreenButton.textContent = "⛶";
+      function scheduleHide(delay) {
+        clearTimeout(hideTimer);
 
-            }
+        if (video.paused) return;
 
-        }
-    );
+        hideTimer = setTimeout(function () {
+          const keyboardInside =
+            controls.contains(document.activeElement) &&
+            document.activeElement.matches(":focus-visible");
 
-});
+          if (video.paused) return;
 
+          // Pointer resting on the bar or keyboard focus inside: keep showing
+          if (controls.matches(":hover") || keyboardInside) {
+            scheduleHide(HIDE_AFTER);
+            return;
+          }
+
+          player.classList.add("controls-hidden");
+        }, delay);
+      }
+
+      function showControls() {
+        player.classList.remove("controls-hidden");
+        scheduleHide(HIDE_AFTER);
+      }
+
+      [
+        "pointermove",
+        "pointerdown",
+        "touchstart",
+        "keydown",
+        "focusin",
+      ].forEach(function (type) {
+        player.addEventListener(type, showControls, { passive: true });
+      });
+
+      player.addEventListener("pointerleave", function () {
+        scheduleHide(800);
+      });
+
+      video.addEventListener("play", showControls);
+      video.addEventListener("pause", showControls);
+      video.addEventListener("ended", showControls);
+
+      showControls();
+    }
+  });
 });

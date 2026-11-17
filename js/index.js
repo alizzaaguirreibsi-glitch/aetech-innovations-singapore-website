@@ -7,66 +7,55 @@ const nextButton = document.getElementById("eventNext");
 let currentEvent = 1;
 
 function updateCarousel() {
-    eventCards.forEach((card, index) => {
+  eventCards.forEach((card, index) => {
+    card.classList.remove("event-left", "event-center", "event-right");
 
-        card.classList.remove(
-            "event-left",
-            "event-center",
-            "event-right"
-        );
+    let position =
+      (index - currentEvent + eventCards.length) % eventCards.length;
 
-        let position =
-            (index - currentEvent + eventCards.length)
-            % eventCards.length;
+    if (position === 0) {
+      card.classList.add("event-center");
+    } else if (position === 1) {
+      card.classList.add("event-right");
+    } else {
+      card.classList.add("event-left");
+    }
+  });
 
-        if (position === 0) {
-            card.classList.add("event-center");
-        } 
-        else if (position === 1) {
-            card.classList.add("event-right");
-        } 
-        else {
-            card.classList.add("event-left");
-        }
-    });
-
-    dots.forEach((dot, index) => {
-        dot.classList.toggle(
-            "active",
-            index === currentEvent
-        );
-    });
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentEvent);
+  });
 }
 
 if (nextButton) {
-    nextButton.addEventListener("click", () => {
-        currentEvent++;
+  nextButton.addEventListener("click", () => {
+    currentEvent++;
 
-        if (currentEvent >= eventCards.length) {
-            currentEvent = 0;
-        }
+    if (currentEvent >= eventCards.length) {
+      currentEvent = 0;
+    }
 
-        updateCarousel();
-    });
+    updateCarousel();
+  });
 }
 
 if (prevButton) {
-    prevButton.addEventListener("click", () => {
-        currentEvent--;
+  prevButton.addEventListener("click", () => {
+    currentEvent--;
 
-        if (currentEvent < 0) {
-            currentEvent = eventCards.length - 1;
-        }
+    if (currentEvent < 0) {
+      currentEvent = eventCards.length - 1;
+    }
 
-        updateCarousel();
-    });
+    updateCarousel();
+  });
 }
 
 dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-        currentEvent = index;
-        updateCarousel();
-    });
+  dot.addEventListener("click", () => {
+    currentEvent = index;
+    updateCarousel();
+  });
 });
 
 updateCarousel();
@@ -81,234 +70,81 @@ const lightboxClose = document.getElementById("lightboxClose");
 
 const eventImages = document.querySelectorAll(".event-image img");
 
-
 /* OPEN IMAGE */
 eventImages.forEach((image) => {
+  image.addEventListener("click", (event) => {
+    event.stopPropagation();
 
-    image.addEventListener("click", (event) => {
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
 
-        event.stopPropagation();
+    lightbox.classList.add("active");
 
-        lightboxImage.src = image.src;
-        lightboxImage.alt = image.alt;
-
-        lightbox.classList.add("active");
-
-        document.body.style.overflow = "hidden";
-    });
-
+    document.body.style.overflow = "hidden";
+  });
 });
-
 
 /* CLOSE LIGHTBOX */
 function closeLightbox() {
+  lightbox.classList.remove("active");
 
-    lightbox.classList.remove("active");
-
-    document.body.style.overflow = "";
-
+  document.body.style.overflow = "";
 }
-
 
 /* CLOSE BUTTON */
 lightboxClose.addEventListener("click", (event) => {
+  event.stopPropagation();
 
-    event.stopPropagation();
-
-    closeLightbox();
-
+  closeLightbox();
 });
-
 
 /* CLICK OUTSIDE IMAGE */
 lightbox.addEventListener("click", (event) => {
-
-    if (event.target === lightbox) {
-
-        closeLightbox();
-
-    }
-
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
 });
-
 
 /* ESC KEY */
 document.addEventListener("keydown", (event) => {
-
-    if (
-        event.key === "Escape" &&
-        lightbox.classList.contains("active")
-    ) {
-
-        closeLightbox();
-
-    }
-
+  if (event.key === "Escape" && lightbox.classList.contains("active")) {
+    closeLightbox();
+  }
 });
 
-/* =========================================
-   MOBILE HAMBURGER MENU
-========================================= */
-
-const hamburger =
-    document.querySelector(".hamburger");
-
-const mobileMenu =
-    document.querySelector(".mobile-menu");
-
-
-if (hamburger && mobileMenu) {
-
-    /* =========================================
-       OPEN / CLOSE MENU
-    ========================================= */
-
-    hamburger.addEventListener("click", () => {
-
-        const isOpen =
-            mobileMenu.classList.contains("open");
-
-
-        if (isOpen) {
-
-            mobileMenu.classList.remove("open");
-
-            hamburger.classList.remove("active");
-
-            hamburger.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        } else {
-
-            mobileMenu.classList.add("open");
-
-            hamburger.classList.add("active");
-
-            hamburger.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-        }
-
-    });
-
-
-    /* =========================================
-       CLOSE MENU WHEN LINK IS CLICKED
-    ========================================= */
-
-    const mobileLinks =
-        mobileMenu.querySelectorAll("a");
-
-
-    mobileLinks.forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("open");
-
-            hamburger.classList.remove("active");
-
-            hamburger.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        });
-
-    });
-
-
-    /* =========================================
-       CLOSE MENU WHEN CLICKING OUTSIDE
-    ========================================= */
-
-    document.addEventListener("click", (event) => {
-
-        const clickedInsideMenu =
-            mobileMenu.contains(event.target);
-
-        const clickedHamburger =
-            hamburger.contains(event.target);
-
-
-        if (
-            !clickedInsideMenu &&
-            !clickedHamburger
-        ) {
-
-            mobileMenu.classList.remove("open");
-
-            hamburger.classList.remove("active");
-
-            hamburger.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-    });
-
-
-    /* =========================================
-       CLOSE MENU WHEN RETURNING TO DESKTOP
-    ========================================= */
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth > 1100) {
-
-            mobileMenu.classList.remove("open");
-
-            hamburger.classList.remove("active");
-
-            hamburger.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-    });
-
-}
-
+/* Mobile menu, topbar and footer are handled by /js/layout.js */
 
 /* ========================================
    SCROLL REVEAL ANIMATION
 ======================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const revealElements = document.querySelectorAll("[data-reveal]");
+  const revealElements = document.querySelectorAll("[data-reveal]");
 
-    // Show everything immediately if reduced motion is preferred
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        revealElements.forEach((element) => {
-            element.classList.add("is-visible");
-        });
-        return;
-    }
-
-    const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        {
-            threshold: 0.12,
-            rootMargin: "0px 0px -40px 0px"
-        }
-    );
-
+  // Show everything immediately if reduced motion is preferred
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     revealElements.forEach((element) => {
-        revealObserver.observe(element);
+      element.classList.add("is-visible");
     });
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px",
+    },
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
 });
