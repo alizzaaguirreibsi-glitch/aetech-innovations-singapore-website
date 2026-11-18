@@ -345,6 +345,80 @@
   })();
 
   /* ---------------------------------------------------------------
+   Entrance animations. Paste inside the IIFE in scse-2027.js, above
+   the "Light page + transparent header" block.
+   Adds .is-in to each section when it scrolls into view, and counts
+   up the numbers in the Scale sentence.
+   --------------------------------------------------------------- */
+  (function initEntrance() {
+    if (
+      window.matchMedia &&
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+    document.documentElement.classList.add("anim");
+
+    function countUp(section) {
+      var nums = section.querySelectorAll(".scse-scale b");
+      Array.prototype.forEach.call(nums, function (b) {
+        var m = b.textContent.match(/^([\d,]+)(.*)$/);
+        if (!m) return;
+        var finalText = b.textContent;
+        var target = parseInt(m[1].replace(/,/g, ""), 10);
+        var suffix = m[2];
+
+        /* lock the final width so the sentence never reflows while counting */
+        b.style.display = "inline-block";
+        b.style.minWidth = b.getBoundingClientRect().width + "px";
+        b.textContent = "0" + suffix;
+
+        var DURATION = 1400;
+        var DELAY = 250;
+        var start = null;
+        function step(now) {
+          if (start === null) start = now;
+          var p = Math.min((now - start) / DURATION, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          b.textContent =
+            Math.round(target * eased).toLocaleString("en-US") + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else b.textContent = finalText;
+        }
+        setTimeout(function () {
+          requestAnimationFrame(step);
+        }, DELAY);
+      });
+    }
+
+    var sections = document.querySelectorAll(
+      ".scse-scale-sec, #theme, #gallery, #programme, #visit",
+    );
+
+    if (!("IntersectionObserver" in window)) {
+      Array.prototype.forEach.call(sections, function (s) {
+        s.classList.add("is-in");
+      });
+      return;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("is-in");
+          if (e.target.classList.contains("scse-scale-sec")) countUp(e.target);
+          io.unobserve(e.target);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" },
+    );
+
+    Array.prototype.forEach.call(sections, function (s) {
+      io.observe(s);
+    });
+  })();
+
+  /* ---------------------------------------------------------------
      Light page + transparent header: use the dark-text logo once the
      header has loaded
      --------------------------------------------------------------- */
