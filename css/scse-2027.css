@@ -1101,43 +1101,88 @@ html.is-locked {
    and delete the old .scse-ticket / .t-stub rules in there
    ===================================================================== */
 @media (max-width: 1000px) {
+  .scse {
+    --page-margin: 20px;
+  }
+
+  /* hero */
+  .scse-hero {
+    display: block;
+    min-height: 0;
+    padding: calc(var(--header-h) + 8px) 0 48px;
+  }
+  .scse-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .scse-frame {
+    width: min(100%, 460px);
+    height: auto;
+  }
+  .scse-frame img {
+    height: auto;
+    aspect-ratio: 4/5;
+  }
+
+  /* spacing */
+  .scse-sec {
+    padding: 64px 0;
+  }
+  .scse-scale-sec {
+    padding-bottom: 64px;
+  }
+
+  /* theme: this is the bug you saw */
+  .scse-theme-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .scse-panels article {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .scse-vframe {
+    width: min(100%, 340px);
+    min-height: 0;
+  }
+  .scse-vframe video {
+    position: static;
+    height: auto;
+    aspect-ratio: 9/16;
+  }
+
+  /* gallery */
+  .scse-gal {
+    --gc-w: clamp(260px, 72vw, 420px);
+    --gc-gap: 14px;
+  }
+  .gal-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+  .gal-prev {
+    left: 10px;
+  }
+  .gal-next {
+    right: 10px;
+  }
+  .gs-ring {
+    width: 260px;
+    height: 260px;
+  }
+  .gs-tri,
+  .gs-plus {
+    display: none;
+  }
+
+  /* programme: single column (the image-first rule below this block stays) */
   .prog {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  /* tabs become a swipeable row of pills */
-  .prog-list {
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
-    gap: 8px;
-    overflow-x: auto;
-    margin-inline: calc(var(--page-margin) * -1);
-    padding: 4px var(--page-margin) 8px;
-    scrollbar-width: none;
-  }
-  .prog-tab {
-    padding: 12px 20px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-pill);
-    font-size: 18px;
-    white-space: nowrap;
-    gap: 10px;
-  }
-  .prog-tab::before {
-    width: 10px;
-    height: 10px;
-  }
-  .prog-tab[aria-selected="true"] {
-    border-color: var(--dot);
-    box-shadow: inset 0 0 0 1px var(--dot);
-  }
-  .prog-tab[aria-selected="true"]::before {
-    transform: none;
-  }
-  .prog-panel {
-    min-height: 300px;
-  }
 
+  /* visit ticket */
   .scse-ticket {
     grid-template-columns: 1fr;
   }
@@ -1183,6 +1228,24 @@ html.is-locked {
     bottom: auto;
     border-left: 0;
     border-top: 2px dashed #b9c8d4;
+  }
+}
+
+/* photo viewer on phones: arrows move under the photo */
+@media (max-width: 700px) {
+  .lb[open] {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 60px 12px 88px;
+  }
+  .lb-nav {
+    position: absolute;
+    bottom: 22px;
+  }
+  .lb-prev {
+    left: calc(50% - 68px);
+  }
+  .lb-next {
+    right: calc(50% - 68px);
   }
 }
 
