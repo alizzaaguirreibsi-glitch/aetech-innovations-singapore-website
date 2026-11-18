@@ -25,6 +25,7 @@
     root
       .querySelectorAll(".nav-links a, .mobile-menu a")
       .forEach(function (link) {
+        if (link.hash) return; // section shortcuts are not pages
         var url = new URL(link.getAttribute("href"), window.location.origin);
         if (url.origin !== window.location.origin) return;
         if (normalise(url.pathname) === here) {

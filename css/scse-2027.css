@@ -1,0 +1,1253 @@
+/* =====================================================================
+   EASY ADJUSTMENTS: change these lines to resize things across the page
+   ===================================================================== */
+.scse {
+  --page-margin: 8vw; /* left and right margin of the whole page */
+  --hero-img-w: 34vw; /* hero image width (frame included) */
+  --hero-img-h: 66vh; /* hero image height (frame included) */
+  --hero-tint: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* white tint over the hero background */
+  --header-h: 92px; /* space kept clear for the header */
+  --theme-video-w: 35vw; /* theme video width (height follows the left column) */
+  --prog-bg: url(/assets/programme.jpg); /* swap for any image */
+  --prog-tint: rgba(255, 255, 255, 0.801); /* higher = whiter */
+  --prog-img-w: 32vw;
+}
+
+/* SCSE 2027 page: SCSE colours + type on a white page, AETECH-designed layout.
+   Radius tokens come from base.css; classes are prefixed scse-/gal-/lb-/pn-/d- */
+.scse {
+  --ink: #16213a;
+  --cyan: #1bbbe9;
+  --blue: #2c6fd8;
+  --purple: #6a4fc0;
+  --green: #7ac143;
+  --pink: #c2338a;
+  --mist: #eef6fb;
+  --line: #d6e3ec;
+  --grad: linear-gradient(
+    90deg,
+    #d9479a,
+    #6a4fc0 30%,
+    #2c6fd8 55%,
+    #1bbbe9 78%,
+    #7ac143
+  );
+  background: #fff;
+  color: var(--ink);
+  font-family: "Nunito Sans", Arial, sans-serif;
+  font-size: 17px;
+}
+.scse h1,
+.scse h2,
+.scse h3,
+.scse dt,
+.scse summary {
+  font-family: Outfit, sans-serif;
+  margin: 0;
+}
+.scse h2 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.scse p {
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+/* =====================================================================
+   Layout
+   ===================================================================== */
+.scse-wrap {
+  box-sizing: border-box;
+  padding-inline: var(--page-margin);
+}
+.scse-sec {
+  padding: 96px 0;
+  scroll-margin-top: 24px;
+}
+.scse-mist {
+  background: var(--mist);
+}
+.scse-lede {
+  font-size: 19px;
+  max-width: 62ch;
+}
+
+/* header lines up with the page margin and keeps the rainbow line underneath */
+.scse .site {
+  padding-inline: var(--page-margin);
+}
+.scse .site--overlay {
+  border-bottom: 4px solid transparent;
+  border-image: var(--grad) 1;
+}
+
+/* transparent AETECH header on a white page: dark text, dark logo (swapped in scse-2027.js) */
+.scse .site--overlay .nav-links > li > a:not(.contact-btn) {
+  color: var(--ink);
+}
+.scse .site--overlay .nav-links > li > a:not(.contact-btn):hover,
+.scse
+  .site--overlay
+  .nav-links
+  > li
+  > a[aria-current="page"]:not(.contact-btn) {
+  color: var(--purple);
+}
+.scse .site--overlay .hamburger span {
+  background: var(--ink);
+}
+
+/* match the homepage logo size (the dark logo file has less padding) */
+@media (min-width: 1101px) {
+  .scse .site .logo img {
+    height: 58px; /* homepage is 72px; 58 / 72 ≈ 0.8 matches the visual size */
+  }
+}
+
+/* =====================================================================
+   Buttons
+   ===================================================================== */
+.scse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+.scse-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: var(--radius-pill);
+  font:
+    600 17px Outfit,
+    sans-serif;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    color 0.2s;
+}
+.scse-btn-primary {
+  background: linear-gradient(90deg, var(--purple), var(--blue));
+  color: #fff;
+}
+.scse-btn-primary:hover {
+  transform: translateY(-2px);
+}
+.scse-btn-ghost {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.scse-btn-ghost:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* =====================================================================
+   Hero: exactly one screen tall; type and spacing scale with screen height
+   ===================================================================== */
+.scse-hero {
+  box-sizing: border-box;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-h) + 12px) 0 28px;
+  background:
+    linear-gradient(var(--hero-tint), var(--hero-tint)),
+    url(/assets/smartcityhero1.jpg) center/cover no-repeat;
+}
+.scse-hero-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.scse h1 {
+  font-size: clamp(80px, min(8vw, 10vh), 110px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(8px, 1.6vh, 16px);
+}
+.scse-theme-line {
+  font:
+    300 clamp(18px, 3.5vh, 32px)/1.25 Outfit,
+    sans-serif;
+  margin-bottom: clamp(10px, 2vh, 20px);
+}
+.scse-desc {
+  font-size: clamp(18px, 2.2vh, 20px);
+  line-height: 1.6;
+  max-width: 54ch;
+  margin-bottom: clamp(14px, 3vh, 28px);
+}
+.scse-hero .scse-btn {
+  padding: clamp(10px, 1.9vh, 15px) 28px;
+  font-size: clamp(15px, 2.1vh, 17px);
+}
+.scse-count {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  margin-top: clamp(16px, 4vh, 36px);
+  padding-top: clamp(10px, 2vh, 20px);
+  border-top: 3px solid;
+  border-image: var(--grad) 1;
+  width: max-content;
+  max-width: 100%;
+}
+.scse-count b {
+  display: block;
+  font:
+    300 clamp(30px, 6vh, 56px)/1 Outfit,
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.scse-count small {
+  font-size: 14px;
+}
+.scse-count p {
+  margin: 0;
+  font-size: 14px;
+  max-width: 9ch;
+  line-height: 1.3;
+}
+
+/* =====================================================================
+   Shared frame (hero image + theme video): gradient hairline + corner brackets
+   ===================================================================== */
+.scse-frame,
+.scse-vframe {
+  --r: 28px;
+  --bk: 34px; /* bracket arm length */
+  --bw: 3px; /* bracket thickness */
+  --bi: 18px; /* bracket distance from the edge */
+
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: #0b1020;
+  box-shadow: 0 30px 60px -28px rgba(106, 79, 192, 0.55);
+}
+
+/* gradient hairline around the edge */
+.scse-frame::before,
+.scse-vframe::before,
+.gal-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  border-radius: inherit;
+  background: var(--grad);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* four white corner brackets */
+.scse-frame::after,
+.scse-vframe::after {
+  content: "";
+  position: absolute;
+  inset: var(--bi);
+  z-index: 3;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+    linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+    linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+    linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  background-position:
+    top left,
+    top left,
+    top right,
+    top right,
+    bottom left,
+    bottom left,
+    bottom right,
+    bottom right;
+  background-size:
+    var(--bk) var(--bw),
+    var(--bw) var(--bk),
+    var(--bk) var(--bw),
+    var(--bw) var(--bk),
+    var(--bk) var(--bw),
+    var(--bw) var(--bk),
+    var(--bk) var(--bw),
+    var(--bw) var(--bk);
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
+}
+
+/* hero: size comes from the variables at the top */
+.scse-frame {
+  width: var(--hero-img-w);
+  height: var(--hero-img-h);
+}
+.scse-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* theme: width from the variable, height from the stretched grid row */
+.scse-vframe {
+  width: var(--theme-video-w);
+  min-height: 420px; /* safety net so it never collapses */
+}
+.scse-vframe video {
+  position: absolute; /* takes the video out of the height calculation */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* =====================================================================
+   Scale
+   ===================================================================== */
+.scse-scale-sec {
+  padding: 56px 0 0;
+}
+.scse-scale-sec + .scse-sec {
+  padding-top: 56px;
+}
+.scse .scse-scale {
+  line-height: 1.25;
+}
+.scse-scale {
+  font:
+    300 clamp(26px, 3.2vw, 42px)/1.3 Outfit,
+    sans-serif;
+  max-width: 30ch;
+  margin-bottom: 8px;
+}
+.scse-scale b {
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.scse-note {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* =====================================================================
+   Theme: text and stacked keywords on the left, portrait video on the right
+   ===================================================================== */
+.scse-theme-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: stretch; /* both columns share one height */
+}
+.scse-theme-grid .scse-lede {
+  margin-bottom: 28px;
+}
+.scse-panels {
+  display: grid;
+  gap: 12px;
+}
+.scse-panels article {
+  display: grid;
+  grid-template-columns: minmax(140px, 190px) 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 24px;
+  border-radius: var(--radius-card);
+}
+.scse-panels h3 {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+}
+.scse-panels p {
+  margin: 0;
+  max-width: 40ch;
+}
+.pn-purple {
+  background: #efeaff;
+}
+.pn-purple h3 {
+  color: var(--purple);
+}
+.pn-cyan {
+  background: #e0f5fc;
+}
+.pn-cyan h3 {
+  color: #0a7fa3;
+}
+.pn-green {
+  background: #e8f5d8;
+}
+.pn-green h3 {
+  color: #3f7a12;
+}
+
+/* =====================================================================
+   Gallery: endless marquee (moved by scse-2027.js), arrows, click to enlarge
+   ===================================================================== */
+.scse-gal {
+  --gc-w: clamp(300px, 30vw, 520px); /* card width, height is 3/4 of it */
+  --gc-gap: 20px;
+  --source-gap: 16px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+.scse .gal-source {
+  margin: var(--source-gap) 0 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* heading block */
+.gal-head {
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+.gal-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  font:
+    600 14px Outfit,
+    sans-serif;
+}
+.gal-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad);
+}
+.gal-head h2 {
+  margin-bottom: 14px;
+}
+.scse .gal-head p {
+  max-width: 90ch;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* the strip */
+.gal-viewport {
+  position: relative;
+  margin-top: 48px;
+  padding-block: 12px 36px; /* room for the card shadows */
+  overflow: hidden;
+}
+.gal-track {
+  display: flex;
+  width: max-content;
+  will-change: transform; /* the script sets the transform every frame */
+}
+.gal-group {
+  display: flex;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gal-card {
+  position: relative;
+  flex: none;
+  width: var(--gc-w);
+  aspect-ratio: 4 / 3; /* matches the 2046 x 1536 photos */
+  margin-right: var(--gc-gap); /* margin, not gap, so the loop point is exact */
+  border-radius: 28px;
+  overflow: hidden;
+  background: #0b1020;
+  box-shadow: 0 24px 48px -28px rgba(106, 79, 192, 0.55);
+}
+.gal-open {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.gal-open img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gal-open:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: -6px;
+}
+
+/* magnifier hint, shown on hover and keyboard focus */
+.gal-open::after {
+  content: "+";
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font:
+    300 26px/1 Outfit,
+    sans-serif;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.gal-open:hover::after,
+.gal-open:focus-visible::after {
+  opacity: 1;
+}
+
+/* arrows: nudge the strip by one photo */
+.gal-arrow {
+  position: absolute;
+  top: calc(12px + var(--gc-w) * 0.375); /* vertical centre of the cards */
+  translate: 0 -50%;
+  z-index: 3;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -10px rgba(22, 33, 58, 0.4);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.gal-arrow:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.gal-prev {
+  left: 20px;
+}
+.gal-next {
+  right: 20px;
+}
+
+/* figures from the official SCSE 2026 review */
+.gal-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 4px 8px;
+  padding: 0 20px;
+  list-style: none;
+}
+.gal-stats li {
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  font-size: 15px;
+}
+.gal-stats b {
+  font:
+    700 18px Outfit,
+    sans-serif;
+}
+.gal-source {
+  margin: 16px 0 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+.gal-source a {
+  color: inherit;
+}
+
+/* background geometry: minimal, low opacity, behind everything */
+.gal-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.gs {
+  position: absolute;
+  display: block;
+}
+.gs-ring {
+  top: -140px;
+  right: -90px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid rgba(106, 79, 192, 0.25);
+  border-radius: 50%;
+}
+.gs-half {
+  top: 120px;
+  left: -70px;
+  width: 220px;
+  height: 110px;
+  border-radius: 220px 220px 0 0;
+  background: rgba(106, 79, 192, 0.1);
+  rotate: 90deg;
+}
+.gs-dots {
+  bottom: 70px;
+  left: 5vw;
+  width: 170px;
+  height: 170px;
+  background: radial-gradient(
+      circle,
+      rgba(44, 111, 216, 0.4) 2px,
+      transparent 2.5px
+    )
+    0 0 / 22px 22px;
+}
+.gs-tri {
+  top: 46%;
+  right: 4vw;
+  width: 86px;
+  height: 76px;
+  background: rgba(27, 187, 233, 0.22);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  rotate: 12deg;
+}
+.gs-sq {
+  bottom: 54px;
+  right: 9vw;
+  width: 110px;
+  height: 110px;
+  border: 2px solid rgba(122, 193, 67, 0.55);
+  border-radius: 24px;
+  rotate: 18deg;
+}
+.gs-plus {
+  top: 110px;
+  right: 24vw;
+  width: 30px;
+  height: 30px;
+  background:
+    linear-gradient(var(--pink), var(--pink)) center / 100% 3px no-repeat,
+    linear-gradient(var(--pink), var(--pink)) center / 3px 100% no-repeat;
+  opacity: 0.45;
+}
+
+/* =====================================================================
+   Photo viewer (native <dialog>, opened from the gallery)
+   ===================================================================== */
+html.is-locked {
+  overflow: hidden; /* no page scroll behind the viewer */
+}
+.lb {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  overflow: hidden;
+}
+.lb::backdrop {
+  background: rgba(11, 16, 32, 0.94);
+}
+.lb[open] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 64px 20px 24px;
+  animation: lb-in 0.25s ease;
+}
+@keyframes lb-in {
+  from {
+    opacity: 0;
+  }
+}
+.lb-stage {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 14px;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+}
+.lb-frame {
+  min-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.lb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+  transform-origin: var(--ox, 50%) var(--oy, 50%);
+  transition: transform 0.25s;
+  touch-action: pan-y;
+}
+.lb.is-zoomed .lb-img {
+  transform: scale(2.2);
+  cursor: zoom-out;
+}
+.lb-cap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 14px;
+  font-size: 16px;
+}
+.lb-count {
+  font:
+    600 15px Outfit,
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+.lb-nav,
+.lb-close {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.lb-nav {
+  width: 52px;
+  height: 52px;
+  font-size: 22px;
+}
+.lb-close {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  font-size: 28px;
+  line-height: 1;
+}
+.lb-nav:hover,
+.lb-close:hover {
+  background: #fff;
+  color: var(--ink);
+}
+.lb-nav:focus-visible,
+.lb-close:focus-visible,
+.lb-img:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* =====================================================================
+   Programme: tabbed index (replaces "Programme accordion" block,
+   including the old .d-purple/.d-cyan/.d-green/.d-pink rules)
+   ===================================================================== */
+#programme {
+  background:
+    linear-gradient(var(--prog-tint), var(--prog-tint)),
+    var(--prog-bg) center / cover no-repeat;
+}
+.d-purple {
+  --dot: var(--purple);
+  --tint: #efeaff;
+}
+.d-cyan {
+  --dot: var(--cyan);
+  --tint: #e0f5fc;
+}
+.d-green {
+  --dot: var(--green);
+  --tint: #e8f5d8;
+}
+.d-pink {
+  --dot: var(--pink);
+  --tint: #fae6f1;
+}
+
+.prog {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--prog-img-w); /* was 5fr 7fr */
+  gap: clamp(32px, 5vw, 80px);
+  margin-top: 40px;
+  align-items: stretch;
+}
+
+/* ---- list ---- */
+.prog-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.prog-item {
+  padding: 18px 0 20px;
+  border-bottom: 1px solid var(--line);
+}
+.prog-item:first-child {
+  padding-top: 0;
+}
+.prog-item h3 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.prog-item h3::before {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+.scse .prog-item p {
+  max-width: 60ch;
+  margin: 0;
+  padding-left: 26px; /* lines up with the title text (dot 12 + gap 14) */
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* ---- fixed image: same frame as the hero image and gallery cards ---- */
+.prog-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 320px;
+  margin: 0;
+  border-radius: 28px;
+  background: #0b1020;
+  box-shadow: 0 30px 60px -28px rgba(106, 79, 192, 0.55);
+}
+.prog-frame img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prog-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 3px;
+  border-radius: inherit;
+  background: var(--grad);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =====================================================================
+   PART 2. Inside your existing @media (max-width: 1000px), replace the
+   .prog-panels rule with this one (keep .prog as it is):
+   ===================================================================== */
+@media (max-width: 1000px) {
+  .prog-frame {
+    order: -1; /* image first, list underneath */
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* =====================================================================
+   Visit: dark admission ticket (replaces the "Ticket" block)
+   Notches are cut with masks, so the drop shadow follows the shape.
+   ===================================================================== */
+.scse-ticket {
+  --stub-w: 300px;
+  --notch: 15px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr var(--stub-w);
+  max-width: 1000px;
+  margin-top: 40px;
+  filter: drop-shadow(0 26px 36px rgba(22, 33, 58, 0.28));
+}
+
+/* main body */
+.t-main {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 4vw, 48px) clamp(28px, 4vw, 48px) clamp(28px, 4vw, 48px)
+    clamp(36px, 4.5vw, 56px);
+  border-radius: 24px 0 0 24px;
+  background: var(--ink);
+  color: #fff;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 100% 0, #0000 97%, #000),
+    radial-gradient(circle var(--notch) at 100% 100%, #0000 97%, #000);
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle var(--notch) at 100% 0, #0000 97%, #000),
+    radial-gradient(circle var(--notch) at 100% 100%, #0000 97%, #000);
+  mask-composite: intersect;
+}
+/* brand stripe down the left edge */
+.t-main::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 8px;
+  background: linear-gradient(
+    180deg,
+    #d9479a,
+    #6a4fc0 30%,
+    #2c6fd8 55%,
+    #1bbbe9 78%,
+    #7ac143
+  );
+}
+.scse .t-event {
+  margin: 0 0 6px;
+  font:
+    600 17px Outfit,
+    sans-serif;
+  opacity: 0.75;
+}
+.scse .t-date {
+  margin: 0;
+  font:
+    300 clamp(56px, 8vw, 104px) / 1 Outfit,
+    sans-serif;
+  letter-spacing: -0.03em;
+}
+.t-date span {
+  display: block;
+  margin-top: 10px;
+  font:
+    600 clamp(20px, 2.2vw, 28px) / 1.2 Outfit,
+    sans-serif;
+  letter-spacing: 0;
+}
+.t-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+.t-days li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-pill);
+  font:
+    600 15px Outfit,
+    sans-serif;
+}
+.t-days li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+}
+.t-days li:nth-child(1) {
+  --c: #b79bff;
+}
+.t-days li:nth-child(2) {
+  --c: #6ea4ff;
+}
+.t-days li:nth-child(3) {
+  --c: var(--cyan);
+}
+.t-days li:nth-child(4) {
+  --c: var(--green);
+}
+
+.t-where {
+  margin: 0;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.t-main .t-where dt {
+  margin-bottom: 4px;
+  color: #8fd8f0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.t-main .t-where dd {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 19px;
+  line-height: 1.45;
+}
+.t-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 16px;
+}
+.t-links a {
+  color: #fff;
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.t-links a:hover {
+  color: #8fd8f0;
+}
+.t-links a:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+/* stub */
+.t-stub {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 20px;
+  padding: 36px 32px;
+  border-radius: 0 24px 24px 0;
+  background: #fff;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 0, #0000 97%, #000),
+    radial-gradient(circle var(--notch) at 0 100%, #0000 97%, #000);
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle var(--notch) at 0 0, #0000 97%, #000),
+    radial-gradient(circle var(--notch) at 0 100%, #0000 97%, #000);
+  mask-composite: intersect;
+}
+/* perforation line */
+.t-stub::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 24px;
+  bottom: 24px;
+  border-left: 2px dashed #b9c8d4;
+}
+.t-code {
+  display: block;
+  height: 48px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 2px,
+    #0000 2px 5px,
+    var(--ink) 5px 6px,
+    #0000 6px 8px,
+    var(--ink) 8px 11px,
+    #0000 11px 14px,
+    var(--ink) 14px 15px,
+    #0000 15px 18px
+  );
+}
+.scse .t-note {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.t-stub .scse-btn {
+  text-align: center;
+}
+
+/* =====================================================================
+   Responsive: add these inside your existing @media (max-width: 1000px)
+   and delete the old .scse-ticket / .t-stub rules in there
+   ===================================================================== */
+@media (max-width: 1000px) {
+  .prog {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  /* tabs become a swipeable row of pills */
+  .prog-list {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 8px;
+    overflow-x: auto;
+    margin-inline: calc(var(--page-margin) * -1);
+    padding: 4px var(--page-margin) 8px;
+    scrollbar-width: none;
+  }
+  .prog-tab {
+    padding: 12px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-size: 18px;
+    white-space: nowrap;
+    gap: 10px;
+  }
+  .prog-tab::before {
+    width: 10px;
+    height: 10px;
+  }
+  .prog-tab[aria-selected="true"] {
+    border-color: var(--dot);
+    box-shadow: inset 0 0 0 1px var(--dot);
+  }
+  .prog-tab[aria-selected="true"]::before {
+    transform: none;
+  }
+  .prog-panel {
+    min-height: 300px;
+  }
+
+  .scse-ticket {
+    grid-template-columns: 1fr;
+  }
+  .t-main {
+    border-radius: 24px 24px 0 0;
+    -webkit-mask:
+      radial-gradient(circle var(--notch) at 0 100%, #0000 97%, #000),
+      radial-gradient(circle var(--notch) at 100% 100%, #0000 97%, #000);
+    mask:
+      radial-gradient(circle var(--notch) at 0 100%, #0000 97%, #000),
+      radial-gradient(circle var(--notch) at 100% 100%, #0000 97%, #000);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  .t-main::before {
+    inset: 0 0 auto 0;
+    width: auto;
+    height: 8px;
+    background: linear-gradient(
+      90deg,
+      #d9479a,
+      #6a4fc0 30%,
+      #2c6fd8 55%,
+      #1bbbe9 78%,
+      #7ac143
+    );
+  }
+  .t-stub {
+    border-radius: 0 0 24px 24px;
+    -webkit-mask:
+      radial-gradient(circle var(--notch) at 0 0, #0000 97%, #000),
+      radial-gradient(circle var(--notch) at 100% 0, #0000 97%, #000);
+    mask:
+      radial-gradient(circle var(--notch) at 0 0, #0000 97%, #000),
+      radial-gradient(circle var(--notch) at 100% 0, #0000 97%, #000);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  .t-stub::before {
+    left: 24px;
+    right: 24px;
+    top: 0;
+    bottom: auto;
+    border-left: 0;
+    border-top: 2px dashed #b9c8d4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prog-panel,
+  .prog-tab,
+  .prog-tab::before {
+    transition: none;
+  }
+}
+
+/* compact ticket content (the kept "Plan your visit" markup) */
+.t-main h3 {
+  margin-bottom: 20px;
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 700;
+}
+.t-main dl {
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.t-main dt {
+  color: #8fd8f0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.t-main dd {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.45;
+}
+/* TEST: concentric rings on the theme video (desktop only) */
+@media (min-width: 1001px) {
+  .scse-vframe {
+    overflow: visible;
+    box-shadow: none;
+    border-radius: 20px;
+    outline: 2px solid rgba(27, 187, 233, 0.5);
+    outline-offset: 14px;
+  }
+  .scse-vframe::before,
+  .scse-vframe::after {
+    content: "";
+    position: absolute;
+    padding: 0;
+    background: none;
+    background-image: none;
+    -webkit-mask: none;
+    mask: none;
+    filter: none;
+    z-index: auto;
+    pointer-events: none;
+  }
+  .scse-vframe::before {
+    inset: -4px;
+    border: 2px solid var(--purple);
+    border-radius: 24px;
+  }
+  .scse-vframe::after {
+    inset: -10px;
+    border: 2px solid rgba(44, 111, 216, 0.75);
+    border-radius: 30px;
+  }
+  .scse-vframe video {
+    border-radius: inherit;
+  }
+}

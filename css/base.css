@@ -6,74 +6,160 @@
 
 /* ---------- Design tokens (use these for all new work) ---------- */
 :root {
-    --color-navy-900: #0b1728;
-    --color-navy-800: #14213D;
-    --color-accent: #D78800;
-    --color-accent-hover: #FFA200;
-    --color-accent-light: #FCA311;
-    --color-white: #ffffff;
-    --color-focus: #FCA311;
+  --color-navy-900: #0b1728;
+  --color-navy-800: #14213d;
+  --color-accent: #d78800;
+  --color-accent-hover: #ffa200;
+  --color-accent-light: #fca311;
+  --color-white: #ffffff;
+  --color-focus: #fca311;
 
-    --radius-pill: 25px;
-    --radius-card: 14px;
+  --radius-pill: 25px;
+  --radius-card: 14px;
 }
 
 /* ---------- Keyboard focus (was missing on every page) ---------- */
 :focus-visible {
-    outline: 3px solid var(--color-focus);
-    outline-offset: 3px;
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 /* ---------- Newsletter feedback message (created by js/main.js) ---------- */
 .newsletter-status {
-    min-height: 1.4em;
-    margin-top: 12px;
-    font-size: 14px;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.85);
+  min-height: 1.4em;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .newsletter-status.success {
-    color: #7ee2a8;
+  color: #7ee2a8;
 }
 
 .newsletter-status.error {
-    color: #ff9b9b;
+  color: #ff9b9b;
 }
 
 .newsletter-form button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* ---------- Scroll reveal (activated by js/main.js) ----------
    Content stays visible if JavaScript is unavailable: the hidden state
    only applies once main.js adds .reveal-ready to <html>. */
 .reveal-ready [data-reveal] {
-    opacity: 0;
-    transform: translateY(18px);
-    transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
-    transition-delay: var(--reveal-delay, 0ms);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal-ready [data-reveal].is-visible {
-    opacity: 1;
-    transform: none;
+  opacity: 1;
+  transform: none;
 }
 
 /* ---------- Respect reduced-motion preferences ---------- */
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto !important;
-    }
+  html {
+    scroll-behavior: auto !important;
+  }
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Header dropdown (SCSE 2027 shortcuts) ---------- */
+.nav-links .has-dropdown {
+  position: relative;
+}
+
+.nav-links .has-dropdown > a::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -3px;
+}
+
+.nav-links .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: block;
+  min-width: 190px;
+  margin: 14px 0 0;
+  padding: 8px;
+  list-style: none;
+  background: var(--color-navy-800);
+  border-radius: var(--radius-card);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  translate: -50% 6px;
+  transition:
+    opacity 0.2s ease,
+    translate 0.2s ease,
+    visibility 0.2s;
+}
+
+/* invisible bridge so the menu stays open while the pointer travels to it */
+.nav-links .dropdown::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+.nav-links .has-dropdown:hover .dropdown,
+.nav-links .has-dropdown:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  translate: -50% 0;
+}
+
+.nav-links .dropdown li {
+  display: block;
+}
+
+.nav-links .dropdown a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.nav-links .dropdown a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Sub-links inside the mobile menu */
+.mobile-menu .mobile-sub {
+  padding: 0 0 8px 16px;
+}
+
+.mobile-menu .mobile-sub li {
+  border-bottom: none;
+}
+
+.mobile-menu .mobile-sub a {
+  padding: 9px 4px;
+  font-size: 14px;
+  opacity: 0.8;
 }

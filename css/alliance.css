@@ -103,6 +103,24 @@ main {
 }
 
 .join {
+  --join-tint-left: 0.96; /* tint strength on the left (behind the text) */
+  --join-tint-right: 0.6; /* tint strength on the right (behind the form) */
+
+  background-image:
+    linear-gradient(
+      100deg,
+      rgba(6, 20, 38, var(--join-tint-left)) 0%,
+      rgba(
+          6,
+          20,
+          38,
+          calc((var(--join-tint-left) + var(--join-tint-right)) / 2)
+        )
+        45%,
+      rgba(6, 20, 38, var(--join-tint-right)) 100%
+    ),
+    url("../assets/alliancebg.jpg");
+
   position: relative;
   display: flex;
   align-items: center;
