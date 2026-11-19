@@ -9,7 +9,7 @@
     255,
     255,
     255,
-    0.5
+    0.604
   ); /* white tint over the hero background */
   --header-h: 92px; /* space kept clear for the header */
   --theme-video-w: 35vw; /* theme video width (height follows the left column) */
@@ -187,8 +187,9 @@
 .scse-desc {
   font-size: clamp(18px, 2.2vh, 20px);
   line-height: 1.6;
-  max-width: 54ch;
+  max-width: 60ch;
   margin-bottom: clamp(14px, 3vh, 28px);
+  color: #000;
 }
 .scse-hero .scse-btn {
   padding: clamp(10px, 1.9vh, 15px) 28px;
@@ -1588,4 +1589,323 @@ html.is-locked {
 .anim #visit.is-in .t-code {
   transform-origin: left center;
   animation: a-draw 0.9s var(--ease) 1s backwards;
+}
+
+/* =====================================================================
+   HERO ASEAN GLOBE (pure CSS 3D, built by scse-2027.js)
+   Size: change --R (globe radius). It fills the old hero image box.
+   ===================================================================== */
+.scse-asean {
+  --R: clamp(130px, min(17vw, 32vh), 360px);
+  position: relative;
+  align-self: center;
+  width: var(--hero-img-w);
+  height: var(--hero-img-h);
+  perspective: 1600px;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.scse-asean.is-drag {
+  cursor: grabbing;
+}
+.scse-asean:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 6px;
+  border-radius: 28px;
+}
+
+/* sphere body: shaded disc with the brand gradient rim */
+.globe-body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--R) * 2);
+  height: calc(var(--R) * 2);
+  margin: calc(var(--R) * -1) 0 0 calc(var(--R) * -1);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 34% 28%,
+    #ffffff 0%,
+    #eaf7fd 38%,
+    #cfe6f5 70%,
+    rgba(106, 79, 192, 0.3) 100%
+  );
+  box-shadow:
+    0 40px 70px -34px rgba(106, 79, 192, 0.6),
+    inset -18px -24px 50px rgba(44, 111, 216, 0.18);
+}
+.globe-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--grad);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* camera: tilt + turn, set by the script when you drag */
+.globe-tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, -8deg)) rotateY(var(--ry, -112deg));
+}
+
+/* the earth: sways gently so ASEAN always stays in view */
+.globe-spin {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: globe-sway 16s ease-in-out infinite alternate;
+}
+.scse-asean:hover .globe-spin,
+.scse-asean.is-drag .globe-spin {
+  animation-play-state: paused;
+}
+@keyframes globe-sway {
+  from {
+    transform: rotateY(-35deg);
+  }
+  to {
+    transform: rotateY(35deg);
+  }
+}
+/* want the full spin back? use:
+   animation: globe-spin 60s linear infinite;
+   @keyframes globe-spin { to { transform: rotateY(360deg); } } */
+
+/* meridians */
+.globe-mer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--R) * 2);
+  height: calc(var(--R) * 2);
+  margin: calc(var(--R) * -1) 0 0 calc(var(--R) * -1);
+  border: 1.5px solid rgba(44, 111, 216, 0.28);
+  border-radius: 50%;
+  transform: rotateY(var(--a));
+}
+
+/* parallels */
+.globe-par {
+  --d: calc(var(--R) * 2 * var(--c));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--d);
+  height: var(--d);
+  margin: calc(var(--d) / -2) 0 0 calc(var(--d) / -2);
+  border: 1.5px dotted rgba(106, 79, 192, 0.45);
+  border-radius: 50%;
+  transform: rotateX(90deg) translateZ(calc(var(--R) * var(--s)));
+}
+.globe-par.eq {
+  border-style: solid;
+  border-color: rgba(106, 79, 192, 0.5);
+}
+
+/* land dots (ASEAN and neighbours) */
+.ld {
+  --Ld: calc(var(--R) * 0.014);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--Ld) * 2);
+  height: calc(var(--Ld) * 2);
+  margin: calc(var(--Ld) * -1) 0 0 calc(var(--Ld) * -1);
+  border-radius: 50%;
+  background: rgba(22, 33, 58, 0.5);
+  transform: rotateY(var(--lon)) rotateX(var(--lat)) translateZ(var(--R));
+  backface-visibility: hidden;
+}
+
+/* pins */
+.pin {
+  --P: calc(var(--R) * 0.045);
+  --pc: var(--ink);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--lon)) rotateX(var(--lat)) translateZ(var(--R));
+}
+.pin.sm {
+  --P: calc(var(--R) * 0.03);
+}
+.pin > * {
+  position: absolute;
+  backface-visibility: hidden;
+}
+.pin .dot {
+  left: calc(var(--P) * -1);
+  top: calc(var(--P) * -1);
+  width: calc(var(--P) * 2);
+  height: calc(var(--P) * 2);
+  border-radius: 50%;
+  background: var(--pc);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 14px var(--pc);
+  transition: scale 0.25s;
+}
+.pin .ring {
+  left: calc(var(--P) * -1.6);
+  top: calc(var(--P) * -1.6);
+  width: calc(var(--P) * 3.2);
+  height: calc(var(--P) * 3.2);
+  border: 2px solid var(--pc);
+  border-radius: 50%;
+  opacity: 0;
+}
+.pin.hub .ring,
+.pin.is-on .ring {
+  animation: globe-ping 2.4s ease-out infinite;
+  animation-delay: var(--dl, 0s);
+}
+.pin.is-on .dot {
+  scale: 1.5;
+}
+@keyframes globe-ping {
+  from {
+    opacity: 0.9;
+    scale: 0.4;
+  }
+  to {
+    opacity: 0;
+    scale: 3.2;
+  }
+}
+.pin .lab {
+  left: calc(var(--P) * 2.2);
+  top: calc(var(--P) * -1.7);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  box-shadow: 0 8px 18px -10px rgba(22, 33, 58, 0.5);
+  font:
+    600 13px/1.2 Outfit,
+    sans-serif;
+  white-space: nowrap;
+}
+/* member-state labels appear only while highlighted */
+.pin.sm .lab {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.pin.sm.is-on .lab {
+  opacity: 1;
+}
+
+/* satellite rings */
+.globe-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--R) * 2.5);
+  height: calc(var(--R) * 2.5);
+  margin: calc(var(--R) * -1.25) 0 0 calc(var(--R) * -1.25);
+  border: 2px dashed rgba(106, 79, 192, 0.5);
+  border-radius: 50%;
+  transform: rotateX(78deg) rotateY(18deg);
+  animation: globe-orbit-a 28s linear infinite reverse;
+  pointer-events: none;
+}
+.globe-orbit::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(var(--R) * -0.05);
+  width: calc(var(--R) * 0.09);
+  height: calc(var(--R) * 0.09);
+  margin-left: calc(var(--R) * -0.045);
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 14px var(--cyan);
+}
+.globe-orbit.o2 {
+  width: calc(var(--R) * 2.9);
+  height: calc(var(--R) * 2.9);
+  margin: calc(var(--R) * -1.45) 0 0 calc(var(--R) * -1.45);
+  border: 1.5px solid rgba(44, 111, 216, 0.28);
+  transform: rotateX(72deg) rotateY(-24deg);
+  animation: globe-orbit-b 40s linear infinite;
+}
+.globe-orbit.o2::before {
+  background: var(--pink);
+  box-shadow: 0 0 14px var(--pink);
+}
+@keyframes globe-orbit-a {
+  from {
+    transform: rotateX(78deg) rotateY(18deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(78deg) rotateY(18deg) rotateZ(360deg);
+  }
+}
+@keyframes globe-orbit-b {
+  from {
+    transform: rotateX(72deg) rotateY(-24deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(72deg) rotateY(-24deg) rotateZ(360deg);
+  }
+}
+
+/* chip under the globe: shows the highlighted country */
+.globe-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  z-index: 2;
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  box-shadow: 0 10px 24px -12px rgba(22, 33, 58, 0.45);
+  font:
+    400 14px/1.2 Outfit,
+    sans-serif;
+  white-space: nowrap;
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+/* entrance on page load */
+@keyframes globe-in {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scse-hero .scse-asean {
+    animation: globe-in 1.3s var(--ease) 0.25s backwards;
+  }
+}
+
+/* phones / tablets: the globe sits under the text */
+@media (max-width: 1000px) {
+  .scse-asean {
+    --R: min(36vw, 150px);
+    width: 100%;
+    height: min(420px, 100vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-spin,
+  .globe-orbit,
+  .pin .ring {
+    animation: none;
+  }
 }
