@@ -43,19 +43,88 @@ select {
    03. SERVICES HERO
 ========================================================= */
 
+/*
+ * ┌─────────────────────────────────────────────────────┐
+ * │  HERO TUNING — edit ONLY this block to adjust the   │
+ * │  layout. All values below feed the styles beneath.  │
+ * └─────────────────────────────────────────────────────┘
+ */
 .services-hero {
+  /* ── Section height ── */
+  --hero-height:            720px;   /* fixed min height */
+  --hero-min-height:        90vh;    /* grows on tall screens */
+
+  /* ── Content horizontal padding ── */
+  --hero-padding-x:         70px;    /* left/right inset of text block */
+
+  /* ── Content vertical offset ── */
+  /* Positive = push DOWN, negative = push UP */
+  --hero-content-offset-y:  90px;
+
+  /* ── Heading ── */
+  --hero-h1-size-min:       38px;    /* smallest (mobile) */
+  --hero-h1-size-fluid:     4.5vw;   /* scales with viewport width */
+  --hero-h1-size-max:       68px;    /* largest (desktop) */
+  --hero-h1-max-width:      750px;   /* wrapping width */
+  --hero-h1-line-height:    1.08;
+  --hero-h1-letter-spacing: -2px;
+  --hero-h1-weight:         300;
+
+  /* ── Paragraph ── */
+  --hero-p-size:            17px;
+  --hero-p-max-width:       620px;
+  --hero-p-gap-top:         32px;    /* space above paragraph */
+  --hero-p-line-height:     1.75;
+
+  /* ── Label (OUR SERVICES) ── */
+  --hero-label-size:        13px;
+  --hero-label-spacing:     4px;     /* letter-spacing */
+  --hero-label-gap-bottom:  24px;    /* space below label */
+  --hero-label-line:        none;    /* "none" hides the line, "block" shows it */
+
+  /* ── CTA button ── */
+  --hero-cta-gap-top:       40px;    /* space above button */
+  --hero-cta-padding:       14px 28px;
+  --hero-cta-font-size:     13px;
+  --hero-cta-radius:        2px;
+
+  /* ── Wordmark (fading AETECH) ── */
+  --hero-wm-size-min:       100px;
+  --hero-wm-size-fluid:     18vw;
+  --hero-wm-size-max:       240px;
+  --hero-wm-top:            20px;     /* vertical start position */
+  --hero-wm-opacity-top:    0.11;    /* fade start (top of text) */
+  --hero-wm-opacity-mid:    0.04;    /* fade midpoint */
+  /* tip: raise both values to make wordmark MORE visible */
+
+  /* ── Video preview (bottom-right corner) ── */
+  --hero-preview-right:     72px;
+  --hero-preview-bottom:    85px;
+  --hero-preview-label-display: none;
+  --hero-thumb-width:       160px;
+  --hero-thumb-height:      108px;
+  --hero-thumb-radius:      10px;
+  --hero-play-size:         32px;
+
+  /* ── Scroll indicator ── */
+  --hero-scroll-right:      70px;
+  --hero-scroll-bottom:     35px;
+
+  /* ── Colors (inherits from site palette; change here if needed) ── */
+  --hero-accent:            #fca311;
+  --hero-bg-dark:           #07182d;
+  --hero-text:              #ffffff;
+  --hero-subtext:           #d1dae6;
+
+  /* ── DO NOT EDIT BELOW THIS LINE ── */
   position: relative;
-
   width: 100%;
-  height: 720px;
-  min-height: 90vh;
-
+  height: var(--hero-height);
+  min-height: var(--hero-min-height);
   overflow: hidden;
-
   display: flex;
   align-items: center;
-
-  background: #07182d;
+  background: var(--hero-bg-dark);
 }
 
 /* Background image */
@@ -63,15 +132,11 @@ select {
 .services-hero-bg {
   position: absolute;
   inset: 0;
-
   background-image: url("../assets/bg8.jpg");
-
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-
   transform: scale(1.02);
-
   z-index: 0;
 }
 
@@ -80,7 +145,6 @@ select {
 .services-hero-overlay {
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     90deg,
     rgba(4, 16, 32, 0.94) 0%,
@@ -88,16 +152,13 @@ select {
     rgba(5, 20, 39, 0.48) 65%,
     rgba(5, 20, 39, 0.68) 100%
   );
-
   z-index: 1;
 }
 
 .services-hero-overlay::after {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     180deg,
     rgba(7, 24, 45, 0.15) 0%,
@@ -111,15 +172,11 @@ select {
 .services-hero-content {
   position: relative;
   z-index: 2;
-
   width: 100%;
   max-width: 1400px;
-
   margin: 0 auto;
-
-  padding: 0 70px;
-
-  transform: translateY(-10px);
+  padding: 0 var(--hero-padding-x);
+  transform: translateY(var(--hero-content-offset-y));
 }
 
 /* Hero label */
@@ -127,73 +184,236 @@ select {
 .services-hero-label {
   display: inline-flex;
   align-items: center;
-
-  gap: 16px;
-
-  margin-bottom: 28px;
-
-  color: #fca311;
-
-  font-size: 13px;
+  gap: 0;
+  margin-bottom: var(--hero-label-gap-bottom);
+  color: var(--hero-accent);
+  font-size: var(--hero-label-size);
   font-weight: 700;
-
-  letter-spacing: 4px;
+  letter-spacing: var(--hero-label-spacing);
 }
 
 .services-hero-label::before {
   content: "";
-
+  display: var(--hero-label-line);
   width: 48px;
   height: 1px;
-
-  background: #fca311;
+  margin-right: 16px;
+  background: var(--hero-accent);
 }
 
 /* Hero heading */
 
 .services-hero h1 {
-  max-width: 850px;
-
-  color: #ffffff;
-
-  font-size: clamp(52px, 6vw, 88px);
-
-  line-height: 1.02;
-
-  font-weight: 300;
-
-  letter-spacing: -3px;
+  max-width: var(--hero-h1-max-width);
+  color: var(--hero-text);
+  font-size: clamp(
+    var(--hero-h1-size-min),
+    var(--hero-h1-size-fluid),
+    var(--hero-h1-size-max)
+  );
+  line-height: var(--hero-h1-line-height);
+  font-weight: var(--hero-h1-weight);
+  letter-spacing: var(--hero-h1-letter-spacing);
 }
 
 .services-hero h1 span {
   display: block;
-
-  color: #fca311;
+  color: var(--hero-accent);
 }
 
 /* Hero paragraph */
 
 .services-hero p {
-  max-width: 620px;
-
-  margin-top: 32px;
-
-  color: #d1dae6;
-
-  font-size: 17px;
-
-  line-height: 1.75;
+  max-width: var(--hero-p-max-width);
+  margin-top: var(--hero-p-gap-top);
+  color: var(--hero-subtext);
+  font-size: var(--hero-p-size);
+  line-height: var(--hero-p-line-height);
 }
 
-/* Hero accent */
+/* ── Hero wordmark (fading AETECH behind content) ── */
 
-.services-hero-line {
-  width: 110px;
-  height: 2px;
+.services-hero-wordmark {
+  position: absolute;
+  z-index: 1;
+  top: var(--hero-wm-top);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(
+    var(--hero-wm-size-min),
+    var(--hero-wm-size-fluid),
+    var(--hero-wm-size-max)
+  );
+  font-weight: 800;
+  letter-spacing: -6px;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, var(--hero-wm-opacity-top)) 0%,
+    rgba(255, 255, 255, var(--hero-wm-opacity-mid)) 50%,
+    rgba(255, 255, 255, 0.00) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
 
-  margin-top: 35px;
+/* ── Hero CTA button ── */
 
-  background: #fca311;
+.services-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: var(--hero-cta-gap-top);
+  padding: var(--hero-cta-padding);
+  border: 1.5px solid rgba(252, 163, 17, 0.6);
+  border-radius: var(--hero-cta-radius);
+  color: var(--hero-text);
+  font-size: var(--hero-cta-font-size);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgba(252, 163, 17, 0.08);
+  backdrop-filter: blur(4px);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.services-hero-cta:hover {
+  background: var(--hero-accent);
+  border-color: var(--hero-accent);
+  color: var(--hero-bg-dark);
+}
+
+.services-hero-cta svg {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.services-hero-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── Hero video preview (bottom-right) ── */
+
+.services-hero-video-preview {
+  position: absolute;
+  z-index: 4;
+  right: var(--hero-preview-right);
+  bottom: var(--hero-preview-bottom);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.services-hero-video-preview:hover {
+  transform: translateY(-3px);
+}
+
+.services-hero-video-preview:focus {
+  outline: 2px solid var(--hero-accent);
+  outline-offset: 4px;
+  border-radius: var(--hero-thumb-radius);
+}
+
+.hero-video-thumb {
+  position: relative;
+  width: var(--hero-thumb-width);
+  height: var(--hero-thumb-height);
+  border-radius: var(--hero-thumb-radius);
+  overflow: hidden;
+  border: 1.5px solid rgba(252, 163, 17, 0.4);
+  background: #0d2240;
+  flex-shrink: 0;
+}
+
+.hero-video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-video-thumb.no-thumb {
+  background: linear-gradient(135deg, #0d2240 0%, #122b4a 100%);
+}
+
+.hero-video-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 24, 45, 0.28);
+}
+
+.hero-video-preview-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--hero-play-size);
+  height: var(--hero-play-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--hero-accent);
+  border-radius: 50%;
+  color: var(--hero-bg-dark);
+  box-shadow: 0 0 0 6px rgba(252, 163, 17, 0.2);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  z-index: 1;
+}
+
+.services-hero-video-preview:hover .hero-video-preview-play {
+  box-shadow: 0 0 0 10px rgba(252, 163, 17, 0.15);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.hero-video-preview-label {
+  display: none;
+}
+
+.hero-video-preview-label span:last-child {
+  color: var(--hero-subtext);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-video-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--hero-accent);
+  border-radius: 50%;
+  animation: hero-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hero-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── Responsive overrides (mobile) ── */
+
+@media (max-width: 768px) {
+  .services-hero {
+    --hero-padding-x:        24px;
+    --hero-content-offset-y: 40px;
+    --hero-preview-right:    24px;
+    --hero-preview-bottom:   90px;
+    --hero-thumb-width:      86px;
+    --hero-thumb-height:     56px;
+    --hero-play-size:        26px;
+    --hero-wm-opacity-top:   0.07;
+    --hero-wm-opacity-mid:   0.02;
+  }
 }
 
 /* Hero scroll */

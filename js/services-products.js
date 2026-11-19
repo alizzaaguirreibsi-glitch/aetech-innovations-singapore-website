@@ -1,5 +1,63 @@
 document.addEventListener("DOMContentLoaded", function () {
   /* =====================================================
+       HERO VIDEO PREVIEW — scroll to video & autoplay
+    ====================================================== */
+
+  const heroPreview = document.getElementById("hero-video-preview");
+
+  if (heroPreview) {
+    function activateHeroVideo() {
+      // Target: the first custom-video-player section in the page
+      const targetSection = document.getElementById("featured-product");
+      const targetVideo = targetSection
+        ? targetSection.querySelector(".custom-video")
+        : null;
+
+      if (targetSection) {
+        // Scroll to the section smoothly
+        targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // After scroll settles, play the video and trigger the play-pause button UI
+        setTimeout(function () {
+          if (targetVideo && targetVideo.paused) {
+            targetVideo.muted = false; // unmute for intentional play
+
+            const playPauseBtn = targetSection.querySelector(".play-pause");
+
+            targetVideo.play().then(function () {
+              if (playPauseBtn) {
+                // Sync the button icon state
+                playPauseBtn.classList.remove("paused");
+                playPauseBtn.setAttribute("aria-label", "Pause video");
+
+                const icon = playPauseBtn.querySelector(".play-icon");
+                const pauseIcon = playPauseBtn.querySelector(".pause-icon");
+
+                if (icon) icon.style.display = "none";
+                if (pauseIcon) pauseIcon.style.display = "";
+              }
+            }).catch(function () {
+              // Autoplay blocked — keep muted and try again
+              targetVideo.muted = true;
+              targetVideo.play().catch(function () {});
+            });
+          }
+        }, 700);
+      }
+    }
+
+    heroPreview.addEventListener("click", activateHeroVideo);
+
+    // Keyboard: Enter or Space
+    heroPreview.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        activateHeroVideo();
+      }
+    });
+  }
+
+  /* =====================================================
        CAROUSEL
     ====================================================== */
 
