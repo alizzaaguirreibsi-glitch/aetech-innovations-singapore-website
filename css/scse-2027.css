@@ -9,11 +9,11 @@
     255,
     255,
     255,
-    0.604
+    0.703
   ); /* white tint over the hero background */
   --header-h: 92px; /* space kept clear for the header */
   --theme-video-w: 35vw; /* theme video width (height follows the left column) */
-  --prog-bg: url(/assets/programme.jpg); /* swap for any image */
+  --prog-bg: url(/assets/programme1.jpg); /* swap for any image */
   --prog-tint: rgba(255, 255, 255, 0.801); /* higher = whiter */
   --prog-img-w: 32vw;
 }

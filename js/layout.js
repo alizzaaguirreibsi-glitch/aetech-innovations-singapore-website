@@ -220,7 +220,7 @@
 
   function load(slot) {
     var name = slot.dataset.include;
-    return fetch("/partials/" + name + ".html")
+    return fetch("/partials/" + name + ".html", { cache: "no-cache" })
       .then(function (res) {
         if (!res.ok) throw new Error(res.status + " " + res.statusText);
         return res.text();
