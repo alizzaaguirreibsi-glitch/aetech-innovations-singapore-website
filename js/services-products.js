@@ -58,56 +58,65 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* =====================================================
-       CAROUSEL
+       WHAT WE DO — IMAGE SHOWCASE
+       Click (or use arrow keys on) an image to make it the large
+       one, in place; its description fades in on the right.
     ====================================================== */
 
-  const slider = document.querySelector(".what-we-do-slider");
+  const showcase = document.getElementById("service-showcase");
 
-  const track = document.querySelector(".what-we-do-track");
+  if (showcase) {
+    const thumbs = Array.from(showcase.querySelectorAll(".service-thumb"));
+    const panels = Array.from(showcase.querySelectorAll(".service-detail"));
 
-  const prevButton = document.querySelector(".carousel-prev");
+    const stage = showcase.querySelector(".service-stage");
 
-  const nextButton = document.querySelector(".carousel-next");
+    function setActive(index, moveFocus) {
+      /* Images keep their order; the active one is marked "main" and CSS
+         grows it in place (the stage's data-active picks the layout). */
+      stage.dataset.active = index;
 
-  const cards = document.querySelectorAll(".what-do-card");
+      thumbs.forEach(function (thumb, i) {
+        const isActive = i === index;
 
-  if (slider && track && cards.length) {
-    /*
-     * Calculate how far the carousel should move.
-     */
-    function getScrollAmount() {
-      const card = cards[0];
-
-      const cardWidth = card.offsetWidth;
-
-      const gap = parseFloat(getComputedStyle(track).gap) || 0;
-
-      return cardWidth + gap;
-    }
-
-    /*
-     * NEXT
-     */
-    if (nextButton) {
-      nextButton.addEventListener("click", function () {
-        slider.scrollBy({
-          left: getScrollAmount(),
-          behavior: "smooth",
-        });
+        thumb.dataset.slot = isActive ? "main" : "small";
+        thumb.setAttribute("aria-selected", String(isActive));
+        thumb.tabIndex = isActive ? 0 : -1;
       });
+
+      panels.forEach(function (panel, i) {
+        panel.classList.toggle("is-active", i === index);
+      });
+
+      if (moveFocus) thumbs[index].focus();
     }
 
-    /*
-     * PREVIOUS
-     */
-    if (prevButton) {
-      prevButton.addEventListener("click", function () {
-        slider.scrollBy({
-          left: -getScrollAmount(),
-          behavior: "smooth",
-        });
+    thumbs.forEach(function (thumb, i) {
+      thumb.addEventListener("click", function () {
+        setActive(i, false);
       });
-    }
+
+      thumb.addEventListener("keydown", function (e) {
+        let next = null;
+
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+          next = (i + 1) % thumbs.length;
+        } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+          next = (i - 1 + thumbs.length) % thumbs.length;
+        } else if (e.key === "Home") {
+          next = 0;
+        } else if (e.key === "End") {
+          next = thumbs.length - 1;
+        }
+
+        if (next !== null) {
+          e.preventDefault();
+          setActive(next, true);
+        }
+      });
+    });
+
+    setActive(0, false);
   }
 
   /* Mobile menu, topbar and footer are handled by /js/layout.js */

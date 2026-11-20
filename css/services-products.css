@@ -450,56 +450,87 @@ select {
 
 .what-we-do {
   position: relative;
-
   width: 100%;
-
   padding: 75px 140px 110px;
-
   overflow: hidden;
 
-  background: linear-gradient(135deg, #edf5f8 0%, #e4eef3 48%, #f4f7f9 100%);
+  /* top layer: white wash on the left so the text stays readable
+     bottom layer: your city image, anchored bottom-right so the buildings stay visible */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(244, 248, 251, 0.9) 0%,
+      rgba(244, 248, 251, 0.65) 45%,
+      rgba(244, 248, 251, 0) 80%
+    ),
+    url("../assets/what-we-do-bg.png") right bottom / cover no-repeat;
 
+  background-color: #e4eef3; /* shown while the image loads */
   color: #07182d;
 }
 
-/* Decorative glow */
+/* Fine dot grid, fading out toward the bottom-left */
 
 .what-we-do::before {
   content: "";
 
   position: absolute;
+  inset: 0;
+  display: none;
+  background-image: radial-gradient(
+    rgba(7, 24, 45, 0.16) 1.2px,
+    transparent 1.4px
+  );
+  background-size: 30px 30px;
 
-  width: 520px;
-  height: 520px;
-
-  top: -260px;
-  right: -180px;
-
-  border-radius: 50%;
-
-  background: rgba(252, 163, 17, 0.07);
-
-  filter: blur(25px);
+  -webkit-mask-image: linear-gradient(
+    200deg,
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    transparent 75%
+  );
+  mask-image: linear-gradient(
+    200deg,
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    transparent 75%
+  );
 
   pointer-events: none;
 }
+
+/* Decorative hairline rings, top-right */
 
 .what-we-do::after {
   content: "";
 
   position: absolute;
+  display: none;
 
-  width: 420px;
-  height: 420px;
+  width: 900px;
+  height: 900px;
 
-  bottom: -240px;
-  left: -180px;
+  top: -420px;
+  right: -380px;
 
   border-radius: 50%;
 
-  background: rgba(7, 24, 45, 0.045);
-
-  filter: blur(20px);
+  background: radial-gradient(
+    circle closest-side,
+    rgba(215, 136, 0, 0.05) 0,
+    rgba(215, 136, 0, 0.05) 60%,
+    rgba(215, 136, 0, 0.3) 60%,
+    rgba(215, 136, 0, 0.3) 60.4%,
+    transparent 60.4%,
+    transparent 79.6%,
+    rgba(7, 24, 45, 0.14) 79.6%,
+    rgba(7, 24, 45, 0.14) 80%,
+    transparent 80%,
+    transparent 99.6%,
+    rgba(215, 136, 0, 0.2) 99.6%,
+    rgba(215, 136, 0, 0.2) 100%,
+    transparent 100%
+  );
 
   pointer-events: none;
 }
@@ -589,112 +620,145 @@ select {
 }
 
 /* =========================================================
-   WHAT WE DO CAROUSEL
+   WHAT WE DO SHOWCASE
+   Three images on the left (one large, two small) and the
+   description of the large one on the right. Clicking a small
+   image swaps it into the large slot.
 ========================================================= */
 
-.what-we-do-carousel {
+.service-showcase {
   position: relative;
   z-index: 5;
 
+  display: grid;
+  grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
+  align-items: center;
+
+  gap: clamp(48px, 7vw, 110px);
+
   width: 100%;
 }
 
-.what-we-do-slider {
+/* ---------- Image stage (left) ---------- */
+
+.service-stage {
   position: relative;
 
   width: 100%;
 
-  overflow: hidden;
-
-  /* Room for the cards' shadow and hover lift. Without it, overflow: hidden
-     cuts the shadow off in a hard line and clips the top of a hovered card.
-     The negative margin cancels the padding so the layout doesn't move. */
-  padding: 16px 0 64px;
-  margin: -16px 0 -64px;
-}
-.what-we-do-track {
-  display: flex;
-
-  gap: 24px;
-
-  width: max-content;
-
-  padding-right: 20px;
-  background: transparent;
+  /* Height is derived from the width so every slot below can use % */
+  aspect-ratio: 480 / 640;
 }
 
-/* =========================================================
-   SERVICE CARDS
-========================================================= */
+.service-thumb {
+  position: absolute;
 
-.what-do-card {
-  position: relative;
+  display: block;
 
-  width: 390px;
-  height: 690px;
-
-  flex: 0 0 390px;
+  margin: 0;
+  padding: 0;
 
   overflow: hidden;
 
   border: 1px solid rgba(7, 24, 45, 0.08);
-
   border-radius: 18px;
 
-  background: #ffffff;
+  background: #dfe9ee;
 
-  box-shadow: 0 15px 40px rgba(7, 24, 45, 0.1);
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(7, 24, 45, 0.12);
 
   transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
+    top 0.6s cubic-bezier(0.65, 0, 0.25, 1),
+    left 0.6s cubic-bezier(0.65, 0, 0.25, 1),
+    width 0.6s cubic-bezier(0.65, 0, 0.25, 1),
+    height 0.6s cubic-bezier(0.65, 0, 0.25, 1),
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
 }
 
-.what-do-card:hover {
-  transform: translateY(-8px);
+/* Sizes: the active image is large, the other two are small.
+   Images never swap places - 01 stays on top, 02 in the middle and 03 at
+   the bottom - the active one simply grows where it is. */
 
-  box-shadow: 0 25px 55px rgba(7, 24, 45, 0.18);
+.service-thumb {
+  left: 19%;
+
+  width: 62%;
+  height: 24.375%;
 }
 
-/* =========================================================
-   SERVICE CARD IMAGE
-========================================================= */
-
-.what-do-card-image {
-  position: absolute;
-
-  top: 0;
+.service-thumb[data-slot="main"],
+.service-stage:not([data-active]) .service-thumb:nth-child(1) {
   left: 0;
 
   width: 100%;
-  height: 48%;
+  height: 46.875%;
 
-  background-color: #ffffff;
+  cursor: default;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  box-shadow: 0 22px 50px rgba(7, 24, 45, 0.2);
 
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Actual images */
+/* Vertical positions for each state (default / before JS = image 01 active) */
 
-.smart-city-card {
-  background-image: url("../assets/smart-city.avif");
+.service-thumb:nth-child(1) {
+  top: 0;
 }
 
-.ai-education-card {
-  background-image: url("../assets/ai-for-educ.avif");
+.service-thumb:nth-child(2) {
+  top: 49.0625%;
 }
 
-.digital-transformation-card {
-  background-image: url("../assets/digital-transfo.avif");
+.service-thumb:nth-child(3) {
+  top: 75.625%;
 }
 
-/* Image overlay */
+/* Image 02 active */
 
-.what-do-card-image::after {
+.service-stage[data-active="1"] .service-thumb:nth-child(2) {
+  top: 26.5625%;
+}
+
+/* Image 03 active */
+
+.service-stage[data-active="2"] .service-thumb:nth-child(2) {
+  top: 26.5625%;
+}
+
+.service-stage[data-active="2"] .service-thumb:nth-child(3) {
+  top: 53.125%;
+}
+
+.service-thumb img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.service-thumb:not([data-slot="main"]):hover {
+  transform: translateY(-4px);
+
+  border-color: #fca311;
+
+  box-shadow: 0 18px 40px rgba(7, 24, 45, 0.2);
+}
+
+.service-thumb:not([data-slot="main"]):hover img {
+  transform: scale(1.06);
+}
+
+/* Soft navy wash so labels stay readable on any photo */
+
+.service-thumb::after {
   content: "";
 
   position: absolute;
@@ -702,23 +766,31 @@ select {
 
   background: linear-gradient(
     180deg,
-    rgba(7, 24, 45, 0.02) 0%,
-    rgba(7, 24, 45, 0.08) 100%
+    rgba(7, 24, 45, 0) 45%,
+    rgba(7, 24, 45, 0.55) 100%
   );
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  pointer-events: none;
 }
 
-/* =========================================================
-   SERVICE CARD NUMBER
-========================================================= */
+.service-thumb:not([data-slot="main"])::after {
+  opacity: 1;
+}
 
-.what-do-number {
+/* Number badge (same look as the old cards) */
+
+.service-thumb-number {
   position: absolute;
 
-  top: 20px;
-  right: 20px;
+  top: 14px;
+  right: 14px;
 
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
 
   display: flex;
   align-items: center;
@@ -730,137 +802,154 @@ select {
 
   color: #07182d;
 
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
 
-  z-index: 10;
+  z-index: 3;
 
   box-shadow: 0 5px 15px rgba(7, 24, 45, 0.1);
 }
 
-/* =========================================================
-   SERVICE CARD CONTENT
-========================================================= */
+/* Caption: only on the small images, so it is clear they are clickable */
 
-.what-do-card-content {
+.service-thumb-caption {
   position: absolute;
 
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 16px;
+  bottom: 12px;
 
-  height: 52%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-  padding: 28px 28px 32px;
+  color: #ffffff;
 
-  background: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 
-  color: #07182d;
+  opacity: 0;
 
-  z-index: 5;
+  transition: opacity 0.4s ease;
 
-  overflow: hidden;
+  z-index: 3;
 }
 
-/* Category */
-
-.what-do-category {
-  display: block;
-
-  margin-bottom: 12px;
+.service-thumb-caption::after {
+  content: "→";
 
   color: #fca311;
 
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0;
+}
 
+.service-thumb:not([data-slot="main"]) .service-thumb-caption {
+  opacity: 1;
+}
+
+.service-thumb[data-slot="main"] .service-thumb-number {
+  background: #fca311;
+}
+
+/* ---------- Description (right) ---------- */
+
+.service-details {
+  /* All three panels share one grid cell so the area never changes height
+     when the description changes. */
+  display: grid;
+
+  /* Panels start at the same top edge so the label never jumps; the
+     whole block is centred against the images by .service-showcase. */
+  align-items: start;
+}
+
+.service-detail {
+  grid-area: 1 / 1;
+
+  max-width: 560px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(14px);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    visibility 0s linear 0.45s;
+}
+
+.service-detail.is-active {
+  opacity: 1;
+  visibility: visible;
+
+  transform: none;
+
+  /* Wait for the old text to fade out before the new text appears */
+  transition:
+    opacity 0.5s ease 0.25s,
+    transform 0.5s ease 0.25s,
+    visibility 0s;
+}
+
+.service-detail-count {
+  display: block;
+
+  margin-bottom: 18px;
+
+  color: #526272;
+
+  font-size: 13px;
+  font-weight: 600;
   letter-spacing: 2px;
 }
 
-/* Orange line */
+.service-detail-category {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: #d78800;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
 
 .card-orange-line {
-  width: 48px;
+  width: 56px;
   height: 3px;
 
-  margin-bottom: 17px;
+  margin-bottom: 24px;
 
   background: #fca311;
 }
 
-/* Card title */
+.service-detail h3 {
+  margin: 0 0 22px;
 
-.what-do-card-content h3 {
-  margin: 0 0 14px;
+  color: #07182d;
 
-  color: #d78800;
-
-  font-size: 25px;
+  font-size: clamp(28px, 3vw, 40px);
 
   line-height: 1.12;
 
-  font-weight: 500;
+  font-weight: 400;
 
-  letter-spacing: -0.6px;
+  letter-spacing: -1px;
 }
 
-/* Card description */
-
-.what-do-card-content p {
-  max-width: 100%;
-
+.service-detail p {
   margin: 0;
 
   color: #526272;
 
-  font-size: 14px;
+  font-size: 17px;
 
-  line-height: 1.65;
-}
-
-/* =========================================================
-   CAROUSEL ARROWS
-========================================================= */
-
-.what-we-do-navigation {
-  display: none;
-}
-
-.carousel-arrow {
-  width: 52px;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(7, 24, 45, 0.18);
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.96);
-
-  color: #07182d;
-
-  font-size: 22px;
-
-  cursor: pointer;
-
-  box-shadow: 0 8px 25px rgba(7, 24, 45, 0.15);
-
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.carousel-arrow:hover {
-  border-color: #fca311;
-
-  background: #fca311;
-
-  transform: scale(1.08);
+  line-height: 1.75;
 }
 
 /* =========================================================
@@ -876,76 +965,54 @@ select {
 
   padding: 110px 5.5% 130px;
 
-  background:
-    radial-gradient(circle at 82% 8%, rgba(255, 153, 0, 0.12), transparent 28%),
-    linear-gradient(180deg, #ffffff 0%, #f7f9fc 48%, #ffffff 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 48%, #ffffff 100%);
 
   color: #07162f;
 }
 
-/* Decorative circles */
-
-.products-showcase::before {
-  content: "";
-
-  position: absolute;
-
-  top: -180px;
-  right: -160px;
-
-  width: 520px;
-  height: 520px;
-
-  border: 1px solid rgba(7, 22, 47, 0.07);
-
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
-.products-showcase::after {
-  content: "";
-
-  position: absolute;
-
-  top: -100px;
-  right: -80px;
-
-  width: 390px;
-  height: 390px;
-
-  border: 1px solid rgba(255, 145, 0, 0.13);
-
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
 /* =========================================================
-   PRODUCTS HERO
+   PRODUCTS HERO - IMMERSIVE VIDEO
+   Full-width video playing behind the text, dark navy overlay,
+   glass highlight cards. The video fills the whole hero
+   (.products-hero-video is positioned behind the copy).
 ========================================================= */
 
 .products-hero {
+  /* side padding that lines up with the 1380px content width */
+  --im-pad: max(5.5vw, calc((100vw - 1380px) / 2));
+
   position: relative;
   z-index: 1;
 
-  max-width: 1380px;
-  min-height: 570px;
+  /* break out of the section padding: flush with the top, full width */
+  width: 100vw;
+  max-width: none;
 
-  margin: 0 auto 70px;
+  margin: -110px 0 0 calc(50% - 50vw);
+
+  min-height: 720px;
+
+  padding: 130px var(--im-pad) 110px;
 
   display: grid;
 
   grid-template-columns:
-    minmax(0, 0.88fr)
-    minmax(0, 1.12fr);
+    minmax(0, 660px)
+    minmax(0, 1fr);
 
   align-items: center;
 
   gap: clamp(40px, 6vw, 100px);
+
+  overflow: hidden;
+
+  background: #07182d;
 }
 
 .products-hero-copy {
+  position: relative;
+  z-index: 2;
+
   max-width: 610px;
 }
 
@@ -968,13 +1035,17 @@ select {
   text-transform: uppercase;
 }
 
+.products-eyebrow {
+  color: #fca311;
+}
+
 .products-eyebrow i {
   display: block;
 
   width: 28px;
   height: 2px;
 
-  background: #f28a00;
+  background: #fca311;
 }
 
 /* Products heading */
@@ -982,7 +1053,7 @@ select {
 .products-hero h2 {
   margin: 18px 0 20px;
 
-  color: #07162f;
+  color: #ffffff;
 
   font-size: clamp(48px, 5.5vw, 78px);
 
@@ -996,7 +1067,7 @@ select {
 .products-hero h2 span {
   display: block;
 
-  color: #f28a00;
+  color: #fca311;
 }
 
 /* Products description */
@@ -1006,7 +1077,7 @@ select {
 
   margin: 0;
 
-  color: #465269;
+  color: rgba(255, 255, 255, 0.78);
 
   font-size: 17px;
 
@@ -1014,7 +1085,7 @@ select {
 }
 
 /* =========================================================
-   PRODUCT HIGHLIGHTS
+   PRODUCT HIGHLIGHTS (glass cards)
 ========================================================= */
 
 .products-highlights {
@@ -1022,11 +1093,9 @@ select {
 
   grid-template-columns: repeat(3, 1fr);
 
+  gap: 12px;
+
   margin-top: 38px;
-
-  padding-top: 25px;
-
-  border-top: 1px solid rgba(7, 22, 47, 0.12);
 }
 
 .product-highlight {
@@ -1037,13 +1106,16 @@ select {
 
   gap: 12px;
 
-  padding-right: 18px;
-}
+  padding: 16px;
 
-.product-highlight + .product-highlight {
-  padding-left: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
 
-  border-left: 1px solid rgba(7, 22, 47, 0.12);
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .highlight-icon {
@@ -1057,9 +1129,9 @@ select {
 
   border-radius: 50%;
 
-  background: #edf3ff;
+  background: rgba(252, 163, 17, 0.16);
 
-  color: #f28a00;
+  color: #fca311;
 
   font-size: 19px;
 }
@@ -1070,7 +1142,7 @@ select {
 }
 
 .product-highlight strong {
-  color: #07162f;
+  color: #ffffff;
 
   font-size: 12px;
 
@@ -1080,7 +1152,7 @@ select {
 .product-highlight small {
   margin-top: 4px;
 
-  color: #68748a;
+  color: rgba(255, 255, 255, 0.64);
 
   font-size: 10px;
 
@@ -1088,27 +1160,29 @@ select {
 }
 
 /* =========================================================
-   PRODUCT VIDEO
+   PRODUCT VIDEO (full-width background)
 ========================================================= */
 
 .products-hero-video {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
   min-width: 0;
 }
 
 .products-video-frame {
   position: relative;
 
-  min-height: 515px;
+  height: 100%;
+  min-height: 0;
 
   overflow: hidden;
 
-  border-radius: 28px;
+  border-radius: 0;
 
   background: #07162f;
-
-  box-shadow:
-    0 30px 80px rgba(7, 22, 47, 0.18),
-    0 8px 25px rgba(7, 22, 47, 0.08);
 }
 
 .products-video {
@@ -1122,6 +1196,8 @@ select {
   object-fit: cover;
 }
 
+/* Navy overlay: darker on the left where the text sits */
+
 .products-video-overlay {
   position: absolute;
 
@@ -1129,22 +1205,23 @@ select {
 
   background:
     linear-gradient(
-      180deg,
-      rgba(7, 22, 47, 0.02) 25%,
-      rgba(7, 22, 47, 0.68) 100%
+      90deg,
+      rgba(5, 16, 32, 0.94) 0%,
+      rgba(5, 18, 36, 0.78) 42%,
+      rgba(5, 18, 36, 0.2) 100%
     ),
-    linear-gradient(90deg, rgba(7, 22, 47, 0.2), transparent 60%);
+    linear-gradient(180deg, transparent 55%, rgba(7, 24, 45, 0.85) 100%);
 
   pointer-events: none;
 }
 
-/* Video label */
+/* Video label (top-right) */
 
 .products-video-label {
   position: absolute;
 
-  top: 22px;
-  left: 22px;
+  top: 40px;
+  right: var(--im-pad);
 
   display: inline-flex;
   align-items: center;
@@ -1180,16 +1257,17 @@ select {
   box-shadow: 0 0 0 5px rgba(242, 138, 0, 0.16);
 }
 
-/* Video caption */
+/* Video caption (bottom-right) */
 
 .products-video-caption {
   position: absolute;
 
-  left: 30px;
-  right: 30px;
-  bottom: 28px;
+  right: var(--im-pad);
+  bottom: 70px;
 
   color: #ffffff;
+
+  text-align: right;
 }
 
 .products-video-caption strong {
@@ -1208,6 +1286,40 @@ select {
   color: rgba(255, 255, 255, 0.78);
 
   font-size: 14px;
+}
+
+/* Products hero - tablet and phone */
+
+@media (max-width: 1000px) {
+  .products-hero {
+    grid-template-columns: minmax(0, 1fr);
+
+    min-height: 0;
+
+    padding-top: 110px;
+    padding-bottom: 80px;
+  }
+
+  .products-hero-copy {
+    max-width: 760px;
+  }
+
+  .products-video-caption {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .products-hero {
+    margin-top: -75px;
+    margin-bottom: 0;
+
+    padding: 90px var(--im-pad) 70px;
+  }
+
+  .products-video-label {
+    top: 24px;
+  }
 }
 
 /* =========================================================
@@ -1314,9 +1426,9 @@ select {
   position: relative;
   z-index: 2;
 
-  width: calc(100% + 11%);
+  width: 100vw;
 
-  margin-left: -5.5%;
+  margin-left: calc(50% - 50vw);
 
   overflow: hidden;
 
@@ -1922,50 +2034,29 @@ select {
     font-size: 16px;
   }
 
-  .what-we-do-track {
-    gap: 20px;
+  /* What we do showcase: stack images above the description */
 
-    padding-left: 7%;
-    padding-right: 7%;
-  }
-
-  .what-do-card {
-    width: 350px;
-    height: 590px;
-
-    flex-basis: 350px;
-  }
-
-  .what-do-card-content {
-    padding: 25px;
-  }
-
-  .what-do-card-content h3 {
-    font-size: 23px;
-  }
-
-  .what-do-card-content p {
-    font-size: 13.5px;
-  }
-
-  /* Products */
-
-  .products-hero {
+  .service-showcase {
     grid-template-columns: 1fr;
 
-    min-height: auto;
+    width: 86%;
+    max-width: 620px;
+
+    /* left edge lines up with the header text (7% side margin) */
+    margin: 0 auto 0 7%;
+
+    gap: 44px;
   }
 
-  .products-hero-copy {
-    max-width: 800px;
+  .service-detail {
+    max-width: 100%;
   }
 
-  .products-hero-video {
-    width: 100%;
-    max-width: 850px;
-
-    margin-left: auto;
+  .service-detail p {
+    font-size: 16px;
   }
+
+  /* Products intro: see "PRODUCTS HERO - IMMERSIVE VIDEO" above */
 
   /* Robotics */
 
@@ -2072,6 +2163,20 @@ select {
     padding: 45px 0 85px;
   }
 
+  /* Smaller decorative rings so they stay clear of the text */
+
+  .what-we-do::after {
+    width: 460px;
+    height: 460px;
+
+    top: -230px;
+    right: -230px;
+  }
+
+  .what-we-do::before {
+    background-size: 24px 24px;
+  }
+
   .what-we-do-header {
     width: 84%;
 
@@ -2114,136 +2219,66 @@ select {
     line-height: 1.7;
   }
 
-  /* Mobile slider */
+  /* What we do showcase (phones): big image on top, two small side by side */
 
-  .what-we-do-slider {
-    overflow-x: auto;
-    overflow-y: hidden;
+  .service-showcase {
+    width: 84%;
 
-    scroll-snap-type: x mandatory;
+    margin-left: 8%;
 
-    scrollbar-width: none;
-
-    -webkit-overflow-scrolling: touch;
-
-    overscroll-behavior-x: contain;
+    gap: 34px;
   }
 
-  .what-we-do-slider::-webkit-scrollbar {
-    display: none;
+  .service-thumb {
+    border-radius: 14px;
   }
 
-  .what-we-do-track {
-    gap: 16px;
+  .service-thumb-number {
+    top: 10px;
+    right: 10px;
 
-    padding-left: 8%;
-    padding-right: 8%;
+    width: 34px;
+    height: 34px;
+
+    font-size: 10px;
   }
 
-  /* Mobile service cards */
+  .service-thumb-caption {
+    left: 10px;
+    bottom: 8px;
 
-  .what-do-card {
-    width: 84vw;
-    max-width: 370px;
-
-    height: 560px;
-
-    flex: 0 0 84vw;
-
-    scroll-snap-align: start;
-
-    border-radius: 16px;
+    font-size: 9px;
+    letter-spacing: 1.4px;
   }
 
-  .what-do-card-image {
-    height: 42%;
-  }
-
-  .what-do-number {
-    top: 16px;
-    right: 16px;
-
-    width: 40px;
-    height: 40px;
+  .service-detail-count {
+    margin-bottom: 14px;
 
     font-size: 11px;
   }
 
-  .what-do-card-content {
-    height: 58%;
+  .service-detail-category {
+    font-size: 10px;
 
-    padding: 23px 22px 26px;
+    letter-spacing: 2px;
   }
 
-  .what-do-category {
-    margin-bottom: 8px;
+  .service-detail h3 {
+    margin-bottom: 16px;
 
-    font-size: 9px;
-
-    letter-spacing: 1.7px;
+    font-size: clamp(24px, 6.6vw, 30px);
   }
 
-  .card-orange-line {
-    width: 40px;
-    height: 2px;
+  .service-detail p {
+    font-size: 14px;
 
-    margin-bottom: 14px;
-  }
-
-  .what-do-card-content h3 {
-    margin-bottom: 11px;
-
-    font-size: 23px;
-
-    line-height: 1.12;
-
-    letter-spacing: -0.4px;
-  }
-
-  .what-do-card-content p {
-    font-size: 13px;
-
-    line-height: 1.58;
-  }
-
-  /* Mobile arrows */
-
-  .what-we-do-navigation {
-    position: absolute;
-
-    top: 125px;
-
-    left: 7px;
-    right: 7px;
-
-    z-index: 100;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    pointer-events: none;
-  }
-
-  .carousel-arrow {
-    width: 42px;
-    height: 42px;
-
-    pointer-events: auto;
-
-    font-size: 18px;
+    line-height: 1.7;
   }
 
   /* Products */
 
   .products-showcase {
     padding: 75px 5% 90px;
-  }
-
-  .products-hero {
-    gap: 35px;
-
-    margin-bottom: 55px;
   }
 
   .products-hero h2 {
@@ -2259,25 +2294,9 @@ select {
   .products-highlights {
     grid-template-columns: 1fr;
 
-    gap: 15px;
-  }
+    gap: 12px;
 
-  .product-highlight {
-    padding: 0;
-  }
-
-  .product-highlight + .product-highlight {
-    padding-left: 0;
-
-    border-left: 0;
-  }
-
-  /* Video */
-
-  .products-video-frame {
-    min-height: 430px;
-
-    border-radius: 20px;
+    margin-top: 30px;
   }
 
   /* Section heading */
@@ -2293,9 +2312,9 @@ select {
   /* Robotics */
 
   .robotics-section {
-    width: calc(100% + 10%);
+    width: 100vw;
 
-    margin-left: -5%;
+    margin-left: calc(50% - 50vw);
   }
 
   .robotics-section-inner {
@@ -2391,41 +2410,6 @@ select {
     font-size: 13.5px;
   }
 
-  .what-do-card {
-    width: 86vw;
-    flex-basis: 86vw;
-
-    height: 535px;
-
-    border-radius: 14px;
-  }
-
-  .what-do-card-content {
-    padding: 21px 20px 22px;
-  }
-
-  .what-do-card-content h3 {
-    font-size: 21px;
-  }
-
-  .what-do-card-content p {
-    font-size: 12.5px;
-  }
-
-  .what-we-do-navigation {
-    top: 120px;
-
-    left: 5px;
-    right: 5px;
-  }
-
-  .carousel-arrow {
-    width: 40px;
-    height: 40px;
-
-    font-size: 17px;
-  }
-
   .robotics-section-inner {
     width: 86%;
   }
@@ -2468,11 +2452,33 @@ select {
 
 .featured-product-section {
   position: relative;
-  width: calc(100% + 11%);
-  margin-left: -5.5%;
-  background-color: #eef3f8;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   color: #14213d;
   overflow: hidden;
+
+  /* Light palette background (top layer first): faint dot grid, soft orange
+     glow top-left, blue tint bottom-right, a white highlight behind the
+     content, and the light blue-grey base gradient. */
+  background:
+    radial-gradient(rgba(20, 33, 61, 0.07) 1.2px, transparent 1.4px) 0 0 / 30px
+      30px,
+    radial-gradient(
+      circle at 10% 6%,
+      rgba(252, 163, 17, 0.18) 0%,
+      rgba(252, 163, 17, 0) 36%
+    ),
+    radial-gradient(
+      circle at 94% 94%,
+      rgba(64, 128, 178, 0.2) 0%,
+      rgba(64, 128, 178, 0) 44%
+    ),
+    radial-gradient(
+      ellipse at 50% 52%,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0) 62%
+    ),
+    linear-gradient(135deg, #edf5f8 0%, #e1ecf3 50%, #f4f8fb 100%);
 }
 
 /* =================================================
@@ -2496,6 +2502,7 @@ select {
 .featured-product-label {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
 
   margin-bottom: 24px;
@@ -2521,17 +2528,19 @@ select {
 ================================================== */
 
 .featured-product-section h2 {
-  max-width: 950px;
+  max-width: none;
 
-  margin: 0 0 75px;
+  margin: 0 0 64px;
 
   color: #14213d;
 
-  font-size: clamp(58px, 7vw, 94px);
+  font-size: clamp(50px, 6.4vw, 90px);
   line-height: 0.98;
 
   font-weight: 300;
   letter-spacing: -4px;
+
+  text-align: center;
 }
 
 .featured-product-section h2 span {
@@ -3075,6 +3084,14 @@ select {
   background-color: #07182d;
 
   box-shadow: 0 25px 60px rgba(20, 33, 61, 0.16);
+}
+
+/* Featured product video: soft navy shadow with a warm orange glow */
+.featured-product-video.custom-video-player {
+  box-shadow:
+    0 0 0 1px rgba(20, 33, 61, 0.06),
+    0 40px 90px rgba(20, 33, 61, 0.22),
+    0 0 110px rgba(252, 163, 17, 0.18);
 }
 
 /* =================================================
